@@ -59,3 +59,26 @@ Este proyecto tiene como propósito que experimentes de manera práctica cómo s
 
 --------
 
+##Primer setup local
+
+La primera vez que se descargue el repositorio desde github es necesario hacer setup al ambiente virtual de python, además tambien es necesario realizar la instalación del archivo de requerimientos.
+Es necesario recalcar que el repositorio fue creado con la versión Python 3.12.6, para verificar la versión de python instalada se utiliza el siguiente comando:
+
+py --version
+
+Para crear el ambiente virtual es necesario estar dentro de la carpeta raíz y ejecutar:
+
+py -m venv .venv
+
+Una vez creado es necesario activarlo utilizando el comando:
+
+.\.venv\Scripts\Activate.ps1
+
+Una vez se encuentran con el ambiente virtual creado es necesario actualizar pip y luego instalar los requerimientos del proyecto, esto con los siguientes comandos:
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+#Setup de datos
+
+Los datos no se suben al github debido a que estos pueden llegar a ser muy pesados para el repositorio en github, por lo que se agregó la ruta de ./data/ a gitignore, por lo tanto es necesario agregarlos manualmente a dicha carpeta.
