@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "proyecto_mlops_equipo_9"
+version = "0.0.1"
+description = "Este proyecto tiene como prop\u00f3sito que experimentes de manera pr\u00e1ctica c\u00f3mo se construye, organiza y despliega un sistema de Machine Learning en producci\u00f3n, siguiendo los principios de MLOps."
+authors = [
+  { name = "Equipo 9" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+requires-python = "==3.12.6"
+
+
+[tool.ruff]
+line-length = 99
+src = ["proyecto_mlops_equipo_9"]
+include = ["pyproject.toml", "proyecto_mlops_equipo_9/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["proyecto_mlops_equipo_9"]
+force-sort-within-sections = true
+
