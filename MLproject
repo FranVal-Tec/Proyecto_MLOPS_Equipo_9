@@ -1,0 +1,16 @@
+name: proyecto_mlops_equipo_9
+
+entry_points: 
+  main: 
+    parameters: 
+      experimentname: 
+        type: string 
+        default: "Train Experiment" 
+    command: "python ./proyecto_mlops_equipo_9/modeling/train.py --experiment-name {experimentname}"
+
+  predict: 
+    parameters: 
+      experimentname: 
+        type: string 
+        default: "Predic Experiment" 
+    command: "python ./proyecto_mlops_equipo_9/modeling/predict.py --experiment-name {experimentname}"
