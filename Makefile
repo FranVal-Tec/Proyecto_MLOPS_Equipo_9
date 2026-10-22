@@ -18,8 +18,6 @@ requirements:
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 	
 
-
-
 ## Delete all compiled Python files
 .PHONY: clean
 clean:
@@ -38,7 +36,6 @@ lint:
 format:
 	ruff check --fix
 	ruff format
-
 
 
 ## Run tests
@@ -62,9 +59,11 @@ create_environment:
 
 
 ## Make dataset
+
+## Descargar datos crudos de MiBici
 .PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) proyecto_mlops_equipo_9/dataset.py
+data:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.download --desde 2025-01 --hasta 2026-09
 
 
 #################################################################################
