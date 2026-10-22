@@ -82,3 +82,29 @@ python -m pip install -r requirements.txt
 #Setup de datos
 
 Los datos no se suben al github debido a que estos pueden llegar a ser muy pesados para el repositorio en github, por lo que se agregó la ruta de ./data/ a gitignore, por lo tanto es necesario agregarlos manualmente a dicha carpeta.
+
+
+## Setup de datos
+
+Los datos no se suben a GitHub (la carpeta `data/` está en `.gitignore`). Se descargan con un script
+desde los [datos abiertos de MiBici](https://mibici.net/es/datos-abiertos/).
+
+Con el ambiente virtual activado, desde la carpeta raíz:
+
+```bash
+make data
+# equivalente: python -m proyecto_mlops_equipo_9.download --desde 2025-01 --hasta 2026-09
+```
+
+El script:
+
+- Lee las URLs de `references/urls_mibici.csv` (no siguen un patrón, por eso viven en un archivo).
+- Descarga a `data/raw/viajes/` un CSV por mes y a `data/raw/estaciones/` el catálogo de estaciones.
+- Solo descarga lo que falta; para volver a bajar todo usa `--forzar`.
+- Genera `data/raw/manifest_descarga.csv` con el tamaño y la huella SHA-256 de cada archivo, para
+  verificar que todo el equipo tiene los mismos datos.
+
+Opciones: `python -m proyecto_mlops_equipo_9.download --help`
+
+**Agregar un mes nuevo:** copiar su enlace de la página de datos abiertos, agregar una fila a
+`references/urls_mibici.csv` (`viajes,AAAA-MM,<url>`) y correr el script con el nuevo `--hasta`.
