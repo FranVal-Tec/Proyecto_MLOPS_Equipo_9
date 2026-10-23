@@ -66,6 +66,12 @@ data:
 	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.download --desde 2025-01 --hasta 2026-09
 
 
+## Limpiar viajes (data/raw -> data/interim)
+.PHONY: clean_data
+clean_data: data
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.cleaning --mlflow
+
+
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################
