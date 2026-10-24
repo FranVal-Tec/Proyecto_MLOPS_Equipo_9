@@ -1,0 +1,542 @@
+{
+  "estado": "VERIFICADO",
+  "tracking_uri": "sqlite:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/mlflow_limpieza_integrada.db",
+  "experimento": "mibici-limpieza-integrada",
+  "experiment_id": "1",
+  "run_id": "9c5d722c76e24ef9a3a603955c04d2ae",
+  "version_datos": "version_001",
+  "dataset_id": "7813aa70c6be348833409a731db19b72dae6001eaca9b1a20a5f0a82dc76c7a3",
+  "manifest_sha256": "f214d057ec785ad8a5dbbcc86112ffa3f16af47d0b97e7f748ea26d4480980ab",
+  "mlflow_version": "3.17.2",
+  "registro_utc": "2026-10-24T04:51:16.805620+00:00",
+  "datasets": [
+    {
+      "nombre": "mibici_raw_2025_01",
+      "digest": "90ee75701a69374926af0400d204f328",
+      "contexto": "raw",
+      "filas": 380184,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_01.csv",
+      "sha256": "90ee75701a69374926af0400d204f3280baed0e3c1a1f97d9e6c0b283757125a"
+    },
+    {
+      "nombre": "mibici_raw_2025_02",
+      "digest": "f52f13f59eb2f1517e05c72f0a3d3d70",
+      "contexto": "raw",
+      "filas": 372529,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_02.csv",
+      "sha256": "f52f13f59eb2f1517e05c72f0a3d3d70c5b0fa6b86626c7325e8ca3b15ff74f8"
+    },
+    {
+      "nombre": "mibici_raw_2025_03",
+      "digest": "e5aa1b5d197f294022d3f0ff1b55bf55",
+      "contexto": "raw",
+      "filas": 405110,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_03.csv",
+      "sha256": "e5aa1b5d197f294022d3f0ff1b55bf553fcbdb697b50d43deaddf8dca36fed64"
+    },
+    {
+      "nombre": "mibici_raw_2025_04",
+      "digest": "630e637d6611aadc67aad321edcd5413",
+      "contexto": "raw",
+      "filas": 366193,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_04.csv",
+      "sha256": "630e637d6611aadc67aad321edcd541361220473bddf8e34ecba46c0e29d7341"
+    },
+    {
+      "nombre": "mibici_raw_2025_05",
+      "digest": "e0a744412a1e840c1d24c24269565a12",
+      "contexto": "raw",
+      "filas": 395891,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_05.csv",
+      "sha256": "e0a744412a1e840c1d24c24269565a123b35739c0bac494b9c0f53ba0a2c43c2"
+    },
+    {
+      "nombre": "mibici_raw_2025_06",
+      "digest": "063e3523db00c90899f08fb134c4c382",
+      "contexto": "raw",
+      "filas": 356611,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_06.csv",
+      "sha256": "063e3523db00c90899f08fb134c4c382667eb0e4d8b6358890d426409c6f4c9e"
+    },
+    {
+      "nombre": "mibici_raw_2025_07",
+      "digest": "a71a9e2a629ff91b021f57e302958e64",
+      "contexto": "raw",
+      "filas": 368186,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_07.csv",
+      "sha256": "a71a9e2a629ff91b021f57e302958e64fa545678d6373aaf0fed62dfc7bebd29"
+    },
+    {
+      "nombre": "mibici_raw_2025_08",
+      "digest": "382e62f3eb878e13faf4c93d031c8efc",
+      "contexto": "raw",
+      "filas": 374727,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_08.csv",
+      "sha256": "382e62f3eb878e13faf4c93d031c8efcf765c392b3402d27b264613f9ff4a56d"
+    },
+    {
+      "nombre": "mibici_raw_2025_09",
+      "digest": "218bed1587a70ec5fc5e8589a0478353",
+      "contexto": "raw",
+      "filas": 376789,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_09.csv",
+      "sha256": "218bed1587a70ec5fc5e8589a04783532301f19c55acd3633fa219c96860e720"
+    },
+    {
+      "nombre": "mibici_raw_2025_10",
+      "digest": "505d9b8b59f65fa223f7889189b74b9f",
+      "contexto": "raw",
+      "filas": 420064,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_10.csv",
+      "sha256": "505d9b8b59f65fa223f7889189b74b9fe167c9dda11c7e7053536a360c611370"
+    },
+    {
+      "nombre": "mibici_raw_2025_11",
+      "digest": "f5c4f1b0c0842339dfdfaac756607314",
+      "contexto": "raw",
+      "filas": 380328,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_11.csv",
+      "sha256": "f5c4f1b0c0842339dfdfaac756607314bdf5b64d17cde58d754f5a5a2e1a5fbe"
+    },
+    {
+      "nombre": "mibici_raw_2025_12",
+      "digest": "b9fbb7386666ac3d452e3d3ef40ab443",
+      "contexto": "raw",
+      "filas": 335420,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2025_12.csv",
+      "sha256": "b9fbb7386666ac3d452e3d3ef40ab443c39eef349cd9c97207230371e1d2d001"
+    },
+    {
+      "nombre": "mibici_raw_2026_01",
+      "digest": "c40d7a43eb1c0b1523d6267bcdfac1da",
+      "contexto": "raw",
+      "filas": 357180,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_01.csv",
+      "sha256": "c40d7a43eb1c0b1523d6267bcdfac1daad04179ef1f0a7cf93f09b2df82285c2"
+    },
+    {
+      "nombre": "mibici_raw_2026_02",
+      "digest": "2d78fa9686477bdedbf333423e6aadc6",
+      "contexto": "raw",
+      "filas": 333756,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_02.csv",
+      "sha256": "2d78fa9686477bdedbf333423e6aadc63b265aaef038eb0b09701746a155ae1f"
+    },
+    {
+      "nombre": "mibici_raw_2026_03",
+      "digest": "97c273aa7465c99d509dfc58436122a9",
+      "contexto": "raw",
+      "filas": 376243,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_03.csv",
+      "sha256": "97c273aa7465c99d509dfc58436122a979ad51af00bd527cef6144210375d16e"
+    },
+    {
+      "nombre": "mibici_raw_2026_04",
+      "digest": "9165342d0169f2c0ba4fb2c944003147",
+      "contexto": "raw",
+      "filas": 351851,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_04.csv",
+      "sha256": "9165342d0169f2c0ba4fb2c944003147c8a95d77f9058361b451cadf141b2483"
+    },
+    {
+      "nombre": "mibici_raw_2026_05",
+      "digest": "d0ac16ae3a75b8ac40565176e2e607c9",
+      "contexto": "raw",
+      "filas": 315895,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_05.csv",
+      "sha256": "d0ac16ae3a75b8ac40565176e2e607c99c756a385860caa7e2ffb351082c9d45"
+    },
+    {
+      "nombre": "mibici_raw_2026_06",
+      "digest": "a4d195786a3599b155829288a0432cd9",
+      "contexto": "raw",
+      "filas": 355303,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_06.csv",
+      "sha256": "a4d195786a3599b155829288a0432cd9e76c6780dc693c0e9579d11e11c49a27"
+    },
+    {
+      "nombre": "mibici_raw_2026_07",
+      "digest": "3f9db9fed985977b175001a984302eae",
+      "contexto": "raw",
+      "filas": 388257,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_07.csv",
+      "sha256": "3f9db9fed985977b175001a984302eae7c61326a75ed93afae9c8fc17bbdb922"
+    },
+    {
+      "nombre": "mibici_raw_2026_08",
+      "digest": "e34f39b9ad204ae0b66f3538894a5f86",
+      "contexto": "raw",
+      "filas": 393524,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_08.csv",
+      "sha256": "e34f39b9ad204ae0b66f3538894a5f86ed03f46d98701169d3e4d95952d5f671"
+    },
+    {
+      "nombre": "mibici_raw_2026_09",
+      "digest": "00b5cf64cc31a502d01044d905f6e033",
+      "contexto": "raw",
+      "filas": 490056,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/raw/viajes/datos_abiertos_2026_09.csv",
+      "sha256": "00b5cf64cc31a502d01044d905f6e033f9bc1db962e771119742fd25c6cb58b3"
+    },
+    {
+      "nombre": "mibici_catalogo_nomenclatura_2026_09",
+      "digest": "206e45fe633922b634d858142fa21e6f",
+      "contexto": "catalogo",
+      "filas": 484,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/fuentes/nomenclatura_2026_09.csv",
+      "sha256": "206e45fe633922b634d858142fa21e6fd9f4c421b6435c02980ef290cc2df90d"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_01",
+      "digest": "05e09d320ce568e1517701ebbfcc090b",
+      "contexto": "silver",
+      "filas": 370915,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_01.parquet",
+      "sha256": "05e09d320ce568e1517701ebbfcc090ba4fd69e9a4ca33ba76b03ad25e26f292"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_01",
+      "digest": "37877c4dd0a51cac21157bea09bfef3e",
+      "contexto": "revision",
+      "filas": 9269,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_01.parquet",
+      "sha256": "37877c4dd0a51cac21157bea09bfef3eeff653b77616bec6d9c100b716a9f07b"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_02",
+      "digest": "7627203065c0135a19de2cc54c625364",
+      "contexto": "silver",
+      "filas": 363530,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_02.parquet",
+      "sha256": "7627203065c0135a19de2cc54c625364b4d6ff248042fe6946117db6ae4769fd"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_02",
+      "digest": "bf34ff6b170c742889dc00031ab2f7d9",
+      "contexto": "revision",
+      "filas": 8999,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_02.parquet",
+      "sha256": "bf34ff6b170c742889dc00031ab2f7d93a0624031f5ba1a2b19ce92ddda06a42"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_03",
+      "digest": "9555b68b429a6a647561e657bb190bbb",
+      "contexto": "silver",
+      "filas": 394765,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_03.parquet",
+      "sha256": "9555b68b429a6a647561e657bb190bbb1d6cd342a573553f0b7019a9f5bfdf5b"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_03",
+      "digest": "633ca4407bfa28e2ac35ab820795e7f8",
+      "contexto": "revision",
+      "filas": 10345,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_03.parquet",
+      "sha256": "633ca4407bfa28e2ac35ab820795e7f865c1b615c38cebd0c485939b12d2f1b8"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_04",
+      "digest": "342ef922454a4c5f069bba8030bd8d91",
+      "contexto": "silver",
+      "filas": 357088,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_04.parquet",
+      "sha256": "342ef922454a4c5f069bba8030bd8d91f987e7fc59524e2b3e2da7229e0289f6"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_04",
+      "digest": "8ca27109537b32708ebafffd17358c0e",
+      "contexto": "revision",
+      "filas": 9105,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_04.parquet",
+      "sha256": "8ca27109537b32708ebafffd17358c0e335d4cd8680a2f283f74e275d9b559fa"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_05",
+      "digest": "a2f783e10ed4e4e6dc68b38777b990a6",
+      "contexto": "silver",
+      "filas": 385864,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_05.parquet",
+      "sha256": "a2f783e10ed4e4e6dc68b38777b990a6d546559c815806376af8cdda0ca943ac"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_05",
+      "digest": "48cee003ae868cfeb4ee9d90642c4e7c",
+      "contexto": "revision",
+      "filas": 10027,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_05.parquet",
+      "sha256": "48cee003ae868cfeb4ee9d90642c4e7ceb1189a17987d51990cd5e81320363c1"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_06",
+      "digest": "aaa069a5629808de1573e6b9477fe70c",
+      "contexto": "silver",
+      "filas": 346867,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_06.parquet",
+      "sha256": "aaa069a5629808de1573e6b9477fe70c2a2d14b2f463463d273f643a58b0f7ac"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_06",
+      "digest": "0108808feec0d9e11ec74fda08ebddcb",
+      "contexto": "revision",
+      "filas": 9744,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_06.parquet",
+      "sha256": "0108808feec0d9e11ec74fda08ebddcb729c074ae1005893f740c2a42029ca89"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_07",
+      "digest": "ef1546892cac5bb7fa47588a6a7a57e5",
+      "contexto": "silver",
+      "filas": 358424,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_07.parquet",
+      "sha256": "ef1546892cac5bb7fa47588a6a7a57e5cb52ee7c4dcc9055036235c1def89264"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_07",
+      "digest": "bbcd934d645205cda9517ef9031ea157",
+      "contexto": "revision",
+      "filas": 9762,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_07.parquet",
+      "sha256": "bbcd934d645205cda9517ef9031ea1579db79835dc28f017172c66472f1c098e"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_08",
+      "digest": "98fac2ca78272636dd42ae60ad351838",
+      "contexto": "silver",
+      "filas": 364639,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_08.parquet",
+      "sha256": "98fac2ca78272636dd42ae60ad351838b82192da6b9de977450a5799e45be3f5"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_08",
+      "digest": "cf7388cff6b9c1271f09068d3b815ef7",
+      "contexto": "revision",
+      "filas": 10088,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_08.parquet",
+      "sha256": "cf7388cff6b9c1271f09068d3b815ef76d3cde6b8930ddcf9e24373630d41137"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_09",
+      "digest": "11c32b20418d26c1610c1908a6c03c43",
+      "contexto": "silver",
+      "filas": 366582,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_09.parquet",
+      "sha256": "11c32b20418d26c1610c1908a6c03c43d30c07c6da276ae4fd4b6486933d71c5"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_09",
+      "digest": "0610b758a3f8f7b3fefaa21dc3194529",
+      "contexto": "revision",
+      "filas": 10207,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_09.parquet",
+      "sha256": "0610b758a3f8f7b3fefaa21dc3194529d7b3f2d5837f44e5b5539401d5a72d53"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_10",
+      "digest": "d4a7168b0c9186d43538e294f09f4d29",
+      "contexto": "silver",
+      "filas": 409509,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_10.parquet",
+      "sha256": "d4a7168b0c9186d43538e294f09f4d29af3f68251b3047f096c7f8840967b46c"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_10",
+      "digest": "142f121dfe63b0808c1f7b0b7a7ec85d",
+      "contexto": "revision",
+      "filas": 10555,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_10.parquet",
+      "sha256": "142f121dfe63b0808c1f7b0b7a7ec85db3478edb8d7b25af2d59ed5b8220fbea"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_11",
+      "digest": "088fe5ad301bd4110664438ca9d8b2a2",
+      "contexto": "silver",
+      "filas": 370215,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_11.parquet",
+      "sha256": "088fe5ad301bd4110664438ca9d8b2a2d3a2db5eb9b163402cab2295f7c44bfb"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_11",
+      "digest": "9d4836bc73309d8566d6d985c3f383e4",
+      "contexto": "revision",
+      "filas": 10113,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_11.parquet",
+      "sha256": "9d4836bc73309d8566d6d985c3f383e4c0695ce1c526798e9d13eda9e01baedb"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2025_12",
+      "digest": "7cf027f6c02f52ad06d9e902f0d48a4c",
+      "contexto": "silver",
+      "filas": 326431,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2025_12.parquet",
+      "sha256": "7cf027f6c02f52ad06d9e902f0d48a4c37707a1f1bb84cbba12fb3c3c8ecc112"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2025_12",
+      "digest": "97d3ea9de86847dcf0edb74fa6210a2a",
+      "contexto": "revision",
+      "filas": 8989,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2025_12.parquet",
+      "sha256": "97d3ea9de86847dcf0edb74fa6210a2af3a33efdd483b8c11992faa5610a3d6a"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_01",
+      "digest": "d39be494629354124a67b0e337622ae0",
+      "contexto": "silver",
+      "filas": 346639,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_01.parquet",
+      "sha256": "d39be494629354124a67b0e337622ae0fac6a849984a85e7b9b4b3ca4a36a3af"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_01",
+      "digest": "0b95963cff9acf3545f471aa34a86747",
+      "contexto": "revision",
+      "filas": 10541,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_01.parquet",
+      "sha256": "0b95963cff9acf3545f471aa34a867476629ec9475a98a97fba4c38781a713c5"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_02",
+      "digest": "48b83578c457d3a608fc8fcb7231c4dc",
+      "contexto": "silver",
+      "filas": 319064,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_02.parquet",
+      "sha256": "48b83578c457d3a608fc8fcb7231c4dce9b833caa229d997894ce947871f354d"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_02",
+      "digest": "8f1cb4013e99e9e25e7ec7c91a575766",
+      "contexto": "revision",
+      "filas": 14692,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_02.parquet",
+      "sha256": "8f1cb4013e99e9e25e7ec7c91a57576696528858ca41f92835300ff5022825f1"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_03",
+      "digest": "595f82a2f3d94da8de89b502663bc78b",
+      "contexto": "silver",
+      "filas": 364823,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_03.parquet",
+      "sha256": "595f82a2f3d94da8de89b502663bc78b79559ddb8ab66ebaa3e9c014e492de81"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_03",
+      "digest": "1a9a003bd63f69f0dfe85a31c0527452",
+      "contexto": "revision",
+      "filas": 11420,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_03.parquet",
+      "sha256": "1a9a003bd63f69f0dfe85a31c052745217d2c8ccd3c672f61a5e08a9b4466591"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_04",
+      "digest": "b2151f3e25e5f2d824df386a8227692a",
+      "contexto": "silver",
+      "filas": 341741,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_04.parquet",
+      "sha256": "b2151f3e25e5f2d824df386a8227692a02dd1d776d05ff805dc8725ba7fbb258"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_04",
+      "digest": "7c1c1fda2cb330f5087dbb21c24180cf",
+      "contexto": "revision",
+      "filas": 10110,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_04.parquet",
+      "sha256": "7c1c1fda2cb330f5087dbb21c24180cf14a8be7e223533b56fd2ad3ece8dfa12"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_05",
+      "digest": "d14bd6e194aa119b39695fdc3841bb54",
+      "contexto": "silver",
+      "filas": 305107,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_05.parquet",
+      "sha256": "d14bd6e194aa119b39695fdc3841bb5440111c9b5f606a6a0822d11120f11622"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_05",
+      "digest": "50b9081401fd85c48384aebc96aed09b",
+      "contexto": "revision",
+      "filas": 10788,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_05.parquet",
+      "sha256": "50b9081401fd85c48384aebc96aed09b49f6cb5b9f7a921c614c0ac16d5fde45"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_06",
+      "digest": "e3c67c3d51d663de7c779ad731d6244f",
+      "contexto": "silver",
+      "filas": 335665,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_06.parquet",
+      "sha256": "e3c67c3d51d663de7c779ad731d6244f07be05d35f4516f6fb897111b0e38b35"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_06",
+      "digest": "021465c7fab7dbccb361a1b89e7c6395",
+      "contexto": "revision",
+      "filas": 19638,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_06.parquet",
+      "sha256": "021465c7fab7dbccb361a1b89e7c6395db2bcc18d3beaedb4a685a25a7dcb6b7"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_07",
+      "digest": "030d7a174e0972db39feb60303b5555c",
+      "contexto": "silver",
+      "filas": 369721,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_07.parquet",
+      "sha256": "030d7a174e0972db39feb60303b5555c85cea0a63da5b4bb6bee0cd9906cd831"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_07",
+      "digest": "7d94fd0f272ee75706ef2f3064c6ea5a",
+      "contexto": "revision",
+      "filas": 18536,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_07.parquet",
+      "sha256": "7d94fd0f272ee75706ef2f3064c6ea5a9d0bd80ca8aa58e8d916499fa6a9f452"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_08",
+      "digest": "41da3d30e0bbd7f1989c41e9d226dc22",
+      "contexto": "silver",
+      "filas": 376340,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_08.parquet",
+      "sha256": "41da3d30e0bbd7f1989c41e9d226dc226b35d5bf105aa969b6d20a1e187f6cae"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_08",
+      "digest": "c0758f1ad620ddfb5d1bcc8e5c2a225c",
+      "contexto": "revision",
+      "filas": 17184,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_08.parquet",
+      "sha256": "c0758f1ad620ddfb5d1bcc8e5c2a225c4dad775066de8dfb54a8ed6839023eff"
+    },
+    {
+      "nombre": "mibici_silver_version_001_2026_09",
+      "digest": "f0d26882697e1b49e3b870fab9c94273",
+      "contexto": "silver",
+      "filas": 470480,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/viajes/viajes_2026_09.parquet",
+      "sha256": "f0d26882697e1b49e3b870fab9c94273c552ddd19ef0e66cfdae4d9fec3af5cb"
+    },
+    {
+      "nombre": "mibici_revision_version_001_2026_09",
+      "digest": "fc2daf391acb50e9097a4abdfaad4cb8",
+      "contexto": "revision",
+      "filas": 19576,
+      "source": "file:///C:/Users/ferur/Documents/Tec_de_monterrey/Maestria_Inteligencia_Artificial/11MLOps/PROYECTO/Personal/Proyecto_MLOPS_Equipo_9/data/silver/version_001/revision/viajes_2026_09.parquet",
+      "sha256": "fc2daf391acb50e9097a4abdfaad4cb8ee398561eaf7f561bf5fe15f1fc6fb7a"
+    }
+  ],
+  "verificacion": {
+    "run_status": "FINISHED",
+    "datasets": 64,
+    "por_contexto": {
+      "raw": 21,
+      "catalogo": 1,
+      "silver": 21,
+      "revision": 21
+    },
+    "resumen": {
+      "excluidos": 249688,
+      "originales": 7894097,
+      "validos": 7644409
+    },
+    "verificado_utc": "2026-10-24T04:51:42.430778+00:00"
+  }
+}

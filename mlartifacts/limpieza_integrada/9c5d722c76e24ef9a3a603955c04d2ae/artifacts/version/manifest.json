@@ -1,0 +1,667 @@
+{
+  "campos_control_constantes": {
+    "catalogo_sha256": "206e45fe633922b634d858142fa21e6fd9f4c421b6435c02980ef290cc2df90d",
+    "catalogo_version": "nomenclatura_2026_09.csv",
+    "codigo_limpieza_sha256": "ea5f19e6aec5829d24d41411126def82eb826b7e6e7f200a9edf389c03cea63f",
+    "dataset_id": "7813aa70c6be348833409a731db19b72dae6001eaca9b1a20a5f0a82dc76c7a3",
+    "insrt_dt": "2026-10-24T04:39:09.381909+00:00",
+    "lote_id": "6e500b52-8b09-40c2-abe3-5fde1e7d6ab2",
+    "updt_dt": "2026-10-24T04:39:09.381909+00:00",
+    "usuario": "ferur",
+    "version_datos": "version_001",
+    "version_limpieza": "1.0.0"
+  },
+  "codigo_sha256": {
+    "__init__.py": "26a0821bd0d841e8fa215337ece2a38087b57bb328d558da25d5d550e3c44114",
+    "cleaning.py": "ea5f19e6aec5829d24d41411126def82eb826b7e6e7f200a9edf389c03cea63f",
+    "config.py": "45dba62804374e44fe8d0a0ff836794b5b79d9d280710a001b3200cb0326afb9",
+    "dataset.py": "a0c05a3a0f8b90880811e35ec8e53d712ae19637bdb793a32e4295b6b5ec46a3"
+  },
+  "creado_utc": "2026-10-24T04:39:09.381909+00:00",
+  "dataset_id": "7813aa70c6be348833409a731db19b72dae6001eaca9b1a20a5f0a82dc76c7a3",
+  "entorno": {
+    "loguru": "0.7.3",
+    "numpy": "2.5.4",
+    "pandas": "3.0.1",
+    "pyarrow": "26.0.0",
+    "python": "3.12.14",
+    "python-dotenv": "1.2.4"
+  },
+  "entradas": [
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_01.csv",
+      "bytes": 32959338,
+      "filas": 380184,
+      "mes": "2025_01",
+      "sha256": "90ee75701a69374926af0400d204f3280baed0e3c1a1f97d9e6c0b283757125a",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_02.csv",
+      "bytes": 32304810,
+      "filas": 372529,
+      "mes": "2025_02",
+      "sha256": "f52f13f59eb2f1517e05c72f0a3d3d70c5b0fa6b86626c7325e8ca3b15ff74f8",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_03.csv",
+      "bytes": 35131572,
+      "filas": 405110,
+      "mes": "2025_03",
+      "sha256": "e5aa1b5d197f294022d3f0ff1b55bf553fcbdb697b50d43deaddf8dca36fed64",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_04.csv",
+      "bytes": 31755599,
+      "filas": 366193,
+      "mes": "2025_04",
+      "sha256": "630e637d6611aadc67aad321edcd541361220473bddf8e34ecba46c0e29d7341",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_05.csv",
+      "bytes": 34332994,
+      "filas": 395891,
+      "mes": "2025_05",
+      "sha256": "e0a744412a1e840c1d24c24269565a123b35739c0bac494b9c0f53ba0a2c43c2",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_06.csv",
+      "bytes": 30924814,
+      "filas": 356611,
+      "mes": "2025_06",
+      "sha256": "063e3523db00c90899f08fb134c4c382667eb0e4d8b6358890d426409c6f4c9e",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_07.csv",
+      "bytes": 31932339,
+      "filas": 368186,
+      "mes": "2025_07",
+      "sha256": "a71a9e2a629ff91b021f57e302958e64fa545678d6373aaf0fed62dfc7bebd29",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_08.csv",
+      "bytes": 32506714,
+      "filas": 374727,
+      "mes": "2025_08",
+      "sha256": "382e62f3eb878e13faf4c93d031c8efcf765c392b3402d27b264613f9ff4a56d",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_09.csv",
+      "bytes": 32686988,
+      "filas": 376789,
+      "mes": "2025_09",
+      "sha256": "218bed1587a70ec5fc5e8589a04783532301f19c55acd3633fa219c96860e720",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_10.csv",
+      "bytes": 36442309,
+      "filas": 420064,
+      "mes": "2025_10",
+      "sha256": "505d9b8b59f65fa223f7889189b74b9fe167c9dda11c7e7053536a360c611370",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_11.csv",
+      "bytes": 32997087,
+      "filas": 380328,
+      "mes": "2025_11",
+      "sha256": "f5c4f1b0c0842339dfdfaac756607314bdf5b64d17cde58d754f5a5a2e1a5fbe",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2025_12.csv",
+      "bytes": 29089463,
+      "filas": 335420,
+      "mes": "2025_12",
+      "sha256": "b9fbb7386666ac3d452e3d3ef40ab443c39eef349cd9c97207230371e1d2d001",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_01.csv",
+      "bytes": 30985189,
+      "filas": 357180,
+      "mes": "2026_01",
+      "sha256": "c40d7a43eb1c0b1523d6267bcdfac1daad04179ef1f0a7cf93f09b2df82285c2",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_02.csv",
+      "bytes": 28953901,
+      "filas": 333756,
+      "mes": "2026_02",
+      "sha256": "2d78fa9686477bdedbf333423e6aadc63b265aaef038eb0b09701746a155ae1f",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_03.csv",
+      "bytes": 32640591,
+      "filas": 376243,
+      "mes": "2026_03",
+      "sha256": "97c273aa7465c99d509dfc58436122a979ad51af00bd527cef6144210375d16e",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_04.csv",
+      "bytes": 30523683,
+      "filas": 351851,
+      "mes": "2026_04",
+      "sha256": "9165342d0169f2c0ba4fb2c944003147c8a95d77f9058361b451cadf141b2483",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_05.csv",
+      "bytes": 27427394,
+      "filas": 315895,
+      "mes": "2026_05",
+      "sha256": "d0ac16ae3a75b8ac40565176e2e607c99c756a385860caa7e2ffb351082c9d45",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_06.csv",
+      "bytes": 30826027,
+      "filas": 355303,
+      "mes": "2026_06",
+      "sha256": "a4d195786a3599b155829288a0432cd9e76c6780dc693c0e9579d11e11c49a27",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_07.csv",
+      "bytes": 33696291,
+      "filas": 388257,
+      "mes": "2026_07",
+      "sha256": "3f9db9fed985977b175001a984302eae7c61326a75ed93afae9c8fc17bbdb922",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_08.csv",
+      "bytes": 34158210,
+      "filas": 393524,
+      "mes": "2026_08",
+      "sha256": "e34f39b9ad204ae0b66f3538894a5f86ed03f46d98701169d3e4d95952d5f671",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "data/raw/viajes/datos_abiertos_2026_09.csv",
+      "bytes": 42566896,
+      "filas": 490056,
+      "mes": "2026_09",
+      "sha256": "00b5cf64cc31a502d01044d905f6e033f9bc1db962e771119742fd25c6cb58b3",
+      "tipo": "viajes"
+    },
+    {
+      "archivo": "nomenclatura_2026_09.csv",
+      "bytes": 40841,
+      "filas": 484,
+      "mes": "",
+      "sha256": "206e45fe633922b634d858142fa21e6fd9f4c421b6435c02980ef290cc2df90d",
+      "tipo": "catalogo"
+    }
+  ],
+  "estado": "COMPLETA",
+  "git_al_ejecutar": {
+    "arbol_con_cambios": true,
+    "archivos_con_cambios": [
+      " M Makefile",
+      " M proyecto_mlops_equipo_9/cleaning.py",
+      " M tests/test_cleaning.py",
+      "?? docs/versionado_datos.md",
+      "?? notebooks/1.2-integracion-limpieza-final.ipynb",
+      "?? notebooks/comparativo_metodologias_limpieza.md",
+      "?? notebooks/comparativo_metodologias_limpieza.pdf"
+    ],
+    "commit_base": "dbade1edccb9ca97b0814b54cdb4d23f842f4fc9",
+    "nota": "El código ejecutado está preservado en fuentes/codigo; el commit base puede no incluirlo."
+  },
+  "ids_entre_archivos": 0,
+  "lote_id": "6e500b52-8b09-40c2-abe3-5fde1e7d6ab2",
+  "meses": [
+    "2025_01",
+    "2025_02",
+    "2025_03",
+    "2025_04",
+    "2025_05",
+    "2025_06",
+    "2025_07",
+    "2025_08",
+    "2025_09",
+    "2025_10",
+    "2025_11",
+    "2025_12",
+    "2026_01",
+    "2026_02",
+    "2026_03",
+    "2026_04",
+    "2026_05",
+    "2026_06",
+    "2026_07",
+    "2026_08",
+    "2026_09"
+  ],
+  "mlflow_al_crear": {
+    "estado": "PENDIENTE_REGISTRO_ASISTIDO",
+    "run_id": null
+  },
+  "notebook_referencia_sha256": "e80ba099e102a6c5441e9faf189ddb3cd2ba866eb81a88784be67aff70f9ca10",
+  "politica": {
+    "edad_max": 90,
+    "edad_min": 16,
+    "excluir_duracion_larga": true,
+    "excluir_estacion_sin_catalogo": true,
+    "excluir_misma_estacion_corta": true,
+    "excluir_sin_coordenadas": true,
+    "excluir_velocidad": true,
+    "max_duracion_min": 180,
+    "max_velocidad_kmh": 30,
+    "min_misma_estacion_s": 60,
+    "umbral_dia_bajo": 0.6,
+    "version_metodologia": "1.0.0"
+  },
+  "resumen": {
+    "excluidos": 249688,
+    "originales": 7894097,
+    "validos": 7644409
+  },
+  "salidas": [
+    {
+      "archivo": "viajes/viajes_2025_01.parquet",
+      "bytes": 11300349,
+      "filas": 370915,
+      "sha256": "05e09d320ce568e1517701ebbfcc090ba4fd69e9a4ca33ba76b03ad25e26f292",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_01.parquet",
+      "bytes": 325942,
+      "filas": 9269,
+      "sha256": "37877c4dd0a51cac21157bea09bfef3eeff653b77616bec6d9c100b716a9f07b",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_02.parquet",
+      "bytes": 11086376,
+      "filas": 363530,
+      "sha256": "7627203065c0135a19de2cc54c625364b4d6ff248042fe6946117db6ae4769fd",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_02.parquet",
+      "bytes": 316561,
+      "filas": 8999,
+      "sha256": "bf34ff6b170c742889dc00031ab2f7d93a0624031f5ba1a2b19ce92ddda06a42",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_03.parquet",
+      "bytes": 11880771,
+      "filas": 394765,
+      "sha256": "9555b68b429a6a647561e657bb190bbb1d6cd342a573553f0b7019a9f5bfdf5b",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_03.parquet",
+      "bytes": 364599,
+      "filas": 10345,
+      "sha256": "633ca4407bfa28e2ac35ab820795e7f865c1b615c38cebd0c485939b12d2f1b8",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_04.parquet",
+      "bytes": 10939962,
+      "filas": 357088,
+      "sha256": "342ef922454a4c5f069bba8030bd8d91f987e7fc59524e2b3e2da7229e0289f6",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_04.parquet",
+      "bytes": 317610,
+      "filas": 9105,
+      "sha256": "8ca27109537b32708ebafffd17358c0e335d4cd8680a2f283f74e275d9b559fa",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_05.parquet",
+      "bytes": 11708507,
+      "filas": 385864,
+      "sha256": "a2f783e10ed4e4e6dc68b38777b990a6d546559c815806376af8cdda0ca943ac",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_05.parquet",
+      "bytes": 347613,
+      "filas": 10027,
+      "sha256": "48cee003ae868cfeb4ee9d90642c4e7ceb1189a17987d51990cd5e81320363c1",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_06.parquet",
+      "bytes": 10715957,
+      "filas": 346867,
+      "sha256": "aaa069a5629808de1573e6b9477fe70c2a2d14b2f463463d273f643a58b0f7ac",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_06.parquet",
+      "bytes": 340741,
+      "filas": 9744,
+      "sha256": "0108808feec0d9e11ec74fda08ebddcb729c074ae1005893f740c2a42029ca89",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_07.parquet",
+      "bytes": 10976323,
+      "filas": 358424,
+      "sha256": "ef1546892cac5bb7fa47588a6a7a57e5cb52ee7c4dcc9055036235c1def89264",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_07.parquet",
+      "bytes": 337471,
+      "filas": 9762,
+      "sha256": "bbcd934d645205cda9517ef9031ea1579db79835dc28f017172c66472f1c098e",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_08.parquet",
+      "bytes": 11130870,
+      "filas": 364639,
+      "sha256": "98fac2ca78272636dd42ae60ad351838b82192da6b9de977450a5799e45be3f5",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_08.parquet",
+      "bytes": 349043,
+      "filas": 10088,
+      "sha256": "cf7388cff6b9c1271f09068d3b815ef76d3cde6b8930ddcf9e24373630d41137",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_09.parquet",
+      "bytes": 11197135,
+      "filas": 366582,
+      "sha256": "11c32b20418d26c1610c1908a6c03c43d30c07c6da276ae4fd4b6486933d71c5",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_09.parquet",
+      "bytes": 352699,
+      "filas": 10207,
+      "sha256": "0610b758a3f8f7b3fefaa21dc3194529d7b3f2d5837f44e5b5539401d5a72d53",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_10.parquet",
+      "bytes": 12265872,
+      "filas": 409509,
+      "sha256": "d4a7168b0c9186d43538e294f09f4d29af3f68251b3047f096c7f8840967b46c",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_10.parquet",
+      "bytes": 363485,
+      "filas": 10555,
+      "sha256": "142f121dfe63b0808c1f7b0b7a7ec85db3478edb8d7b25af2d59ed5b8220fbea",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_11.parquet",
+      "bytes": 11282163,
+      "filas": 370215,
+      "sha256": "088fe5ad301bd4110664438ca9d8b2a2d3a2db5eb9b163402cab2295f7c44bfb",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_11.parquet",
+      "bytes": 359237,
+      "filas": 10113,
+      "sha256": "9d4836bc73309d8566d6d985c3f383e4c0695ce1c526798e9d13eda9e01baedb",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2025_12.parquet",
+      "bytes": 10216063,
+      "filas": 326431,
+      "sha256": "7cf027f6c02f52ad06d9e902f0d48a4c37707a1f1bb84cbba12fb3c3c8ecc112",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2025_12.parquet",
+      "bytes": 323904,
+      "filas": 8989,
+      "sha256": "97d3ea9de86847dcf0edb74fa6210a2af3a33efdd483b8c11992faa5610a3d6a",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_01.parquet",
+      "bytes": 10691857,
+      "filas": 346639,
+      "sha256": "d39be494629354124a67b0e337622ae0fac6a849984a85e7b9b4b3ca4a36a3af",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_01.parquet",
+      "bytes": 374278,
+      "filas": 10541,
+      "sha256": "0b95963cff9acf3545f471aa34a867476629ec9475a98a97fba4c38781a713c5",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_02.parquet",
+      "bytes": 9980805,
+      "filas": 319064,
+      "sha256": "48b83578c457d3a608fc8fcb7231c4dce9b833caa229d997894ce947871f354d",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_02.parquet",
+      "bytes": 491414,
+      "filas": 14692,
+      "sha256": "8f1cb4013e99e9e25e7ec7c91a57576696528858ca41f92835300ff5022825f1",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_03.parquet",
+      "bytes": 11179364,
+      "filas": 364823,
+      "sha256": "595f82a2f3d94da8de89b502663bc78b79559ddb8ab66ebaa3e9c014e492de81",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_03.parquet",
+      "bytes": 386805,
+      "filas": 11420,
+      "sha256": "1a9a003bd63f69f0dfe85a31c052745217d2c8ccd3c672f61a5e08a9b4466591",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_04.parquet",
+      "bytes": 10554589,
+      "filas": 341741,
+      "sha256": "b2151f3e25e5f2d824df386a8227692a02dd1d776d05ff805dc8725ba7fbb258",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_04.parquet",
+      "bytes": 346286,
+      "filas": 10110,
+      "sha256": "7c1c1fda2cb330f5087dbb21c24180cf14a8be7e223533b56fd2ad3ece8dfa12",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_05.parquet",
+      "bytes": 9623606,
+      "filas": 305107,
+      "sha256": "d14bd6e194aa119b39695fdc3841bb5440111c9b5f606a6a0822d11120f11622",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_05.parquet",
+      "bytes": 376466,
+      "filas": 10788,
+      "sha256": "50b9081401fd85c48384aebc96aed09b49f6cb5b9f7a921c614c0ac16d5fde45",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_06.parquet",
+      "bytes": 10410556,
+      "filas": 335665,
+      "sha256": "e3c67c3d51d663de7c779ad731d6244f07be05d35f4516f6fb897111b0e38b35",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_06.parquet",
+      "bytes": 667785,
+      "filas": 19638,
+      "sha256": "021465c7fab7dbccb361a1b89e7c6395db2bcc18d3beaedb4a685a25a7dcb6b7",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_07.parquet",
+      "bytes": 11269262,
+      "filas": 369721,
+      "sha256": "030d7a174e0972db39feb60303b5555c85cea0a63da5b4bb6bee0cd9906cd831",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_07.parquet",
+      "bytes": 616734,
+      "filas": 18536,
+      "sha256": "7d94fd0f272ee75706ef2f3064c6ea5a9d0bd80ca8aa58e8d916499fa6a9f452",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_08.parquet",
+      "bytes": 11411348,
+      "filas": 376340,
+      "sha256": "41da3d30e0bbd7f1989c41e9d226dc226b35d5bf105aa969b6d20a1e187f6cae",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_08.parquet",
+      "bytes": 575307,
+      "filas": 17184,
+      "sha256": "c0758f1ad620ddfb5d1bcc8e5c2a225c4dad775066de8dfb54a8ed6839023eff",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "viajes/viajes_2026_09.parquet",
+      "bytes": 13649679,
+      "filas": 470480,
+      "sha256": "f0d26882697e1b49e3b870fab9c94273c552ddd19ef0e66cfdae4d9fec3af5cb",
+      "tipo": "viajes_validos"
+    },
+    {
+      "archivo": "revision/viajes_2026_09.parquet",
+      "bytes": 658354,
+      "filas": 19576,
+      "sha256": "fc2daf391acb50e9097a4abdfaad4cb8ee398561eaf7f561bf5fe15f1fc6fb7a",
+      "tipo": "viajes_excluidos"
+    },
+    {
+      "archivo": "fuentes/codigo/__init__.py",
+      "bytes": 58,
+      "sha256": "26a0821bd0d841e8fa215337ece2a38087b57bb328d558da25d5d550e3c44114",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "fuentes/codigo/cleaning.py",
+      "bytes": 33751,
+      "sha256": "ea5f19e6aec5829d24d41411126def82eb826b7e6e7f200a9edf389c03cea63f",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "fuentes/codigo/config.py",
+      "bytes": 851,
+      "sha256": "45dba62804374e44fe8d0a0ff836794b5b79d9d280710a001b3200cb0326afb9",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "fuentes/codigo/dataset.py",
+      "bytes": 4635,
+      "sha256": "a0c05a3a0f8b90880811e35ec8e53d712ae19637bdb793a32e4295b6b5ec46a3",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "fuentes/nomenclatura_2026_09.csv",
+      "bytes": 40841,
+      "sha256": "206e45fe633922b634d858142fa21e6fd9f4c421b6435c02980ef290cc2df90d",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "fuentes/notebook_limpieza.ipynb",
+      "bytes": 506005,
+      "sha256": "e80ba099e102a6c5441e9faf189ddb3cd2ba866eb81a88784be67aff70f9ca10",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "layout.md",
+      "bytes": 4768,
+      "sha256": "58dc8af8291f673e2aab18fe4d6fad578db1cb43fefef3e6bf014f65df9c5d46",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/bitacora.csv",
+      "bytes": 12874,
+      "sha256": "42ea22b6168ff088497da7ac460029cc8696e4eaf469ee6e631c3219791e8870",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/correcciones.csv",
+      "bytes": 5835,
+      "sha256": "b6eb37d8c424a7453906504bb6825f152c08da049adef2fa45bbd8810f8eee09",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/entorno.json",
+      "bytes": 147,
+      "sha256": "69efbc44aa73e40069c4b03ed897dc4ace4ce36f263236ad4f9af13dbbc1bf24",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/indicadores_calidad.csv",
+      "bytes": 18257,
+      "sha256": "511c6d71577512d0800e386830f50935dc54dd1d6baa66bf87fd5c0377b4a53a",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/layout.json",
+      "bytes": 4249,
+      "sha256": "294eccecc8933f03d477431a04010eb753ae3b4c67a5a2a8c87e47c8e8f912e4",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/manifest_entradas.csv",
+      "bytes": 3088,
+      "sha256": "41275a7bb44f35dedd9c55adc35cece2881560771c85965874211047524d0fb9",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "metadatos/resumen_mensual.csv",
+      "bytes": 810,
+      "sha256": "bbc2050c9f0c42bc2c0dd1e7d5465b7c8d134685191c2e65464ea2575d110daa",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "politica.json",
+      "bytes": 376,
+      "sha256": "ae3d5b62d5111a0eb471a7a32de6e5b71dab267aedd7cb8ec5d1dca8a5554d44",
+      "tipo": "metadatos_o_fuente"
+    },
+    {
+      "archivo": "README.md",
+      "bytes": 967,
+      "sha256": "22e0620d74a4902729653cf109da9993f6e541399066602b24f6bae946a97cfa",
+      "tipo": "metadatos_o_fuente"
+    }
+  ],
+  "usuario": "ferur",
+  "version_datos": "version_001",
+  "version_limpieza": "1.0.0"
+}
