@@ -194,3 +194,6 @@ cython_debug/
 
 # Copia operativa local de MLflow
 /.local/
+
+# Salidas intermedias locales
+/data/interim/
