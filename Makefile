@@ -66,10 +66,15 @@ data:
 	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.download --desde 2025-01 --hasta 2026-09
 
 
-## Limpiar viajes (data/raw -> data/interim)
+## Generar version silver verificada (data/raw -> data/silver/version_001)
 .PHONY: clean_data
-clean_data: data
-	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.cleaning --mlflow
+clean_data:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.cleaning --version version_001
+
+## Verificar Parquet y manifiestos de la version silver
+.PHONY: verify_data
+verify_data:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.cleaning --verificar data/silver/version_001
 
 
 #################################################################################

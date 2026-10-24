@@ -1,0 +1,8 @@
+{
+  "loguru": "0.7.3",
+  "numpy": "2.5.4",
+  "pandas": "3.0.1",
+  "pyarrow": "26.0.0",
+  "python": "3.12.14",
+  "python-dotenv": "1.2.4"
+}

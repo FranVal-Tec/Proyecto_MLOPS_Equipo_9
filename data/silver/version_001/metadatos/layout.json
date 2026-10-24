@@ -1,0 +1,232 @@
+[
+  {
+    "campo": "viaje_id",
+    "nullable": true,
+    "tipo": "int64"
+  },
+  {
+    "campo": "usuario_id",
+    "nullable": true,
+    "tipo": "int64"
+  },
+  {
+    "campo": "genero",
+    "nullable": true,
+    "tipo": "dictionary<values=string, indices=int8, ordered=0>"
+  },
+  {
+    "campo": "anio_nacimiento",
+    "nullable": true,
+    "tipo": "double"
+  },
+  {
+    "campo": "inicio",
+    "nullable": true,
+    "tipo": "timestamp[us]"
+  },
+  {
+    "campo": "fin",
+    "nullable": true,
+    "tipo": "timestamp[us]"
+  },
+  {
+    "campo": "origen_id",
+    "nullable": true,
+    "tipo": "int64"
+  },
+  {
+    "campo": "destino_id",
+    "nullable": true,
+    "tipo": "int64"
+  },
+  {
+    "campo": "duracion_min",
+    "nullable": true,
+    "tipo": "double"
+  },
+  {
+    "campo": "fila_csv",
+    "nullable": true,
+    "tipo": "int64"
+  },
+  {
+    "campo": "mes_archivo",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "flag_duplicado_exacto",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_id_conflictivo",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_id_entre_archivos",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_id_esencial_nulo",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_fecha_invalida",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_fuera_mes",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_duracion_no_positiva",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "viaje_corto",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "corto_distinta_estacion",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_misma_estacion_corta",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "duracion_larga",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_estacion_sin_catalogo",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_sin_coordenadas",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "velocidad_kmh",
+    "nullable": true,
+    "tipo": "double"
+  },
+  {
+    "campo": "flag_velocidad_imposible",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "anio_nacimiento_original",
+    "nullable": true,
+    "tipo": "double"
+  },
+  {
+    "campo": "flag_edad_imposible",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "flag_nacimiento_no_numerico",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "edad",
+    "nullable": true,
+    "tipo": "double"
+  },
+  {
+    "campo": "genero_original",
+    "nullable": true,
+    "tipo": "dictionary<values=string, indices=int8, ordered=0>"
+  },
+  {
+    "campo": "flag_genero_invalido",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "motivo_exclusion",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "es_valido",
+    "nullable": true,
+    "tipo": "bool"
+  },
+  {
+    "campo": "usuario",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "insrt_dt",
+    "nullable": true,
+    "tipo": "timestamp[us, tz=UTC]"
+  },
+  {
+    "campo": "updt_dt",
+    "nullable": true,
+    "tipo": "timestamp[us, tz=UTC]"
+  },
+  {
+    "campo": "version_datos",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "version_limpieza",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "dataset_id",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "lote_id",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "catalogo_version",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "catalogo_sha256",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "codigo_limpieza_sha256",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "archivo_origen",
+    "nullable": true,
+    "tipo": "large_string"
+  },
+  {
+    "campo": "sha256_origen",
+    "nullable": true,
+    "tipo": "large_string"
+  }
+]

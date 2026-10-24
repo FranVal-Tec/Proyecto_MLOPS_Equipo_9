@@ -1,0 +1,14 @@
+{
+  "edad_max": 90,
+  "edad_min": 16,
+  "excluir_duracion_larga": true,
+  "excluir_estacion_sin_catalogo": true,
+  "excluir_misma_estacion_corta": true,
+  "excluir_sin_coordenadas": true,
+  "excluir_velocidad": true,
+  "max_duracion_min": 180,
+  "max_velocidad_kmh": 30,
+  "min_misma_estacion_s": 60,
+  "umbral_dia_bajo": 0.6,
+  "version_metodologia": "1.0.0"
+}

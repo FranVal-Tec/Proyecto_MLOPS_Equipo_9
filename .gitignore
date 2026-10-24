@@ -1,5 +1,6 @@
-# Data
-/data/
+# Conservar los datos originales solo localmente
+/data/raw/**
+!/data/raw/.gitkeep
 
 # Mac OS-specific storage files
 .DS_Store
@@ -189,3 +190,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# Copia operativa local de MLflow
+/.local/
