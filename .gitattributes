@@ -1,0 +1,2 @@
+# Las versiones de datos se guardan byte por byte: sus SHA-256 dependen de los saltos de línea
+data/silver/** -text
