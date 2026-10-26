@@ -14,3 +14,10 @@ entry_points:
         type: string 
         default: "Predic Experiment" 
     command: "python ./proyecto_mlops_equipo_9/modeling/predict.py --experiment-name {experimentname}"
+
+  features: 
+    parameters: 
+      experimentname: 
+        type: string 
+        default: "Feature Engineering Experiment" 
+    command: "python ./proyecto_mlops_equipo_9/features.py --experiment-name {experimentname}"

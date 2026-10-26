@@ -46,12 +46,17 @@ python -m pip install -r requirements.txt
 - `data/silver/version_001/` sí está en el repositorio, así que para verificar los datos o abrir MLflow
   no hace falta descargar nada.
 - Una versión existente no se sobrescribe: para generar otra, usar una etiqueta nueva (`version_002`).
+- La salida de datos utilizando feature engineering se encuentra en `data/processed`, aquí se sobreescribe cada salida.
 
 **Limpieza.** `cleaning.py` aplica las reglas justificadas en los notebooks 1.1 y 1.2: elimina
 desanclajes fallidos (misma estación, menos de 60 s), velocidades imposibles (más de 30 km/h en línea
 recta), préstamos de más de 180 min, estaciones fuera del catálogo, duplicados e IDs conflictivos, y
 convierte en faltantes las edades fuera de 16 a 90 años. Resultado: 7,894,097 viajes originales,
 7,644,409 válidos (`viajes/`) y 249,688 excluidos con su motivo (`revision/`).
+
+**Ingeniería de características** `feature.py` aplica las reglas que se encuentra en el notebook enfocado en el preprocesamiento
+de los datos previo a realizar entrenamiento con el modelo. Se puede ejecutar sencillamente solamente ejecutando `mlflow ui` desde
+la ruta raíz del proyecto y posteriormente utilizando una entry previamente creada `mlflow run . -e **features** --experiment-name "Feature Engineering Experiment" --env-manager local`
 
 Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_mlflow.md` y
 `docs/abrir_mlflow.md`.
@@ -71,6 +76,7 @@ python -m pytest tests/
 | `1.1-AG-limpieza-datos` | Exploración temporal y por estación (usa una versión anterior de la limpieza) |
 | `1.2-integracion-limpieza-final` | Reglas finales importadas de `cleaning.py` y sensibilidad de umbrales |
 | `1.0-EDA-integral-mibici` | EDA completo de demanda por zona y hora, y preprocesamiento (requiere `make data`) |
+| `1.0-FV-feature-engineering` | Proceso basado en preprocesamiento del EDA final, analizando nuevas posibilidades y utilizando datoss desde ruta |
 
 ## Organización del proyecto
 
@@ -98,7 +104,7 @@ python -m pytest tests/
     ├── register_data.py          <- Registro de una versión en MLflow
     ├── open_mlflow.py            <- Abre la base de MLflow en otra computadora
     ├── eda.py                    <- Funciones del EDA (reutiliza las reglas de cleaning.py)
-    ├── features.py               <- Variables para el modelo (fase siguiente)
+    ├── features.py               <- Variables para el modelo, concluyendo sobre variables objetivo
     └── modeling                  <- Entrenamiento y predicción (fase siguiente)
 ```
 
