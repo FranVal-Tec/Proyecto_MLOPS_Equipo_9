@@ -1,5 +1,6 @@
 # Conservar los datos originales solo localmente
 /data/raw/**
+/data/processed/**
 !/data/raw/.gitkeep
 
 # Mac OS-specific storage files
