@@ -62,6 +62,9 @@ creada en la configuración del proyecto se ejecuta el siguiente comando en la t
 
 El resultado es un solo archivo parquet dentro de data/processed/datos_feature_engineered.parquet con las transformaciones de las características que se tienen en el script features.py
 
+**Particion de datos para entrenamiento** 
+mlflow run . -e **data_partitioning** --experiment-name "Data Partitioning Experiment" --env-manager local
+
 Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_mlflow.md` y
 `docs/abrir_mlflow.md`.
 
@@ -109,6 +112,7 @@ python -m pytest tests/
     ├── open_mlflow.py            <- Abre la base de MLflow en otra computadora
     ├── eda.py                    <- Funciones del EDA (reutiliza las reglas de cleaning.py)
     ├── features.py               <- Variables para el modelo, concluyendo sobre variables objetivo
+    ├── data_partitioning.py      <- Utilizar la salida de features para realizar particionado de datos (train, test, drift)
     └── modeling                  <- Entrenamiento y predicción (fase siguiente)
 ```
 
