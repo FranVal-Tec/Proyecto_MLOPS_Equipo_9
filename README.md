@@ -56,7 +56,11 @@ convierte en faltantes las edades fuera de 16 a 90 años. Resultado: 7,894,097 v
 
 **Ingeniería de características** `feature.py` aplica las reglas que se encuentra en el notebook enfocado en el preprocesamiento
 de los datos previo a realizar entrenamiento con el modelo. Se puede ejecutar sencillamente solamente ejecutando `mlflow ui` desde
-la ruta raíz del proyecto y posteriormente utilizando una entry previamente creada `mlflow run . -e **features** --experiment-name "Feature Engineering Experiment" --env-manager local`
+la ruta raíz del proyecto para que se registren correctamente los experimentos y posteriormente utilizando una entry previamente 
+creada en la configuración del proyecto se ejecuta el siguiente comando en la terminal.
+`mlflow run . -e **features** --experiment-name "Feature Engineering Experiment" --env-manager local`
+
+El resultado es un solo archivo parquet dentro de data/processed/datos_feature_engineered.parquet con las transformaciones de las características que se tienen en el script features.py
 
 Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_mlflow.md` y
 `docs/abrir_mlflow.md`.
