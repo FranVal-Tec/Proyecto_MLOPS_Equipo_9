@@ -22,6 +22,9 @@ import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
 
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
+
 from proyecto_mlops_equipo_9.config import PROJ_ROOT
 from proyecto_mlops_equipo_9.dataset import (
     COLUMNAS,

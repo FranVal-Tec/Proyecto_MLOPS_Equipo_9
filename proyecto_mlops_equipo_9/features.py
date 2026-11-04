@@ -11,6 +11,9 @@ import os
 import numpy as np
 import pandas as pd
 
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
+
 from proyecto_mlops_equipo_9.config import (PROCESSED_DATA_DIR, CLEAN_DATA_DIR)
 
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
@@ -190,46 +193,118 @@ def agregar_caracteristicas_temporales(df):
 
     return df
 
-def ordernar_columas(df, objetivos):
+def ordenar_columnas(df, objetivos):
     df = df[
         [col for col in df.columns if col not in objetivos]
         + objetivos
     ]
     return df
 
+def crear_pipeline_features():
+    #Creación de los pasos del pipeline de acuerdo a las funciones creadas anteriormente
+    pipeline = Pipeline(steps=[
+        (
+            "eliminar_columnas",
+            FunctionTransformer(
+                lambda df: eliminar_columnas( df, columnas_features ),
+                validate=False
+            )
+        ),
+        (
+            "cambiar_tipo_dato",
+            FunctionTransformer(
+                lambda df: cambiar_tipo_dato( df, ["inicio", "fin"] ),
+                validate=False
+            )
+        ),
+        (
+            "procesar_agregado",
+            FunctionTransformer(
+                procesar_agregado,
+                validate=False
+            )
+        ),
+        (
+            "agregar_variables_objetivo",
+            FunctionTransformer(
+                agregar_variables_objetivo,
+                validate=False
+            )
+        ),
+        (
+            "agregar_caracteristicas_temporales",
+            FunctionTransformer(
+                agregar_caracteristicas_temporales,
+                validate=False
+            )
+        ),
+        (
+            "ordenar_columnas",
+            FunctionTransformer(
+                lambda df: ordenar_columnas( df, [ "salidas_siguiente_hora", "llegadas_siguiente_hora" ] ),
+                validate=False
+            )
+        )
+    ],
+    verbose=True
+    )
+
+    return pipeline
+
 with mlflow.start_run():
+    #Asignación de variales de rutas de entrada y salida.
     input_path: Path = CLEAN_DATA_DIR
     output_path: Path = PROCESSED_DATA_DIR / "datos_feature_engineered.parquet"
 
+    #Creación y ejecución del pipeline creado para realizar feature engineering.
     print('\n')
+
     df = obtener_datos_limpios(input_path)
-    print('Datos obtenidos correctamente desde ruta')
-    df = eliminar_columnas(df, columnas_features)
-    print('Columnas eliminadas correctamente')
-    df = cambiar_tipo_dato(df, ["inicio","fin"])
-    print('Tipo de datos transformados correctamente')
-    df = procesar_agregado(df)
-    print('Procesado agregado inicial completado correctamente')
-    df = agregar_variables_objetivo(df)
-    print('Calculo de variables objetivo finalizado correctamente')
-    df = agregar_caracteristicas_temporales(df)
-    print('Las fechas de intervalo se han descompuesto en sus características correctamente')
-    df = ordernar_columas(df, ["salidas_siguiente_hora", "llegadas_siguiente_hora"])
-    print('Ordenamiento de columnas finalizado correctamente')
+    print('Datos obtenidos correctamente desde ruta\n')
+
+    
+    pipeline_features = crear_pipeline_features()
+
+    try:
+        df = pipeline_features.fit_transform(df)
+        print('Pipeline finalizado correctamente')
+    except Exception as e:
+        print('Error durante la ejecución del Pipeline:')
+        print(f'Detalle de error: {e}')
+        raise
    
-    #Se guarda el dataframe terminado en la ruta de salida
+    #Guardado de el dataframe terminado en la ruta de salida
     df.to_parquet(
         output_path,
         index=False
     )
-    print('Datos guardados correctamente en '+str(output_path))
-    print('\n')
+    print('\nDatos guardados correctamente en '+str(output_path))
 
-    # Se crea un objeto tipo dataset de mlflow
+    #Guardado y registro en mlflow para su versionamiento.
+    print('\nComenzando proceso de registro en mlflow')
+    #Se crea un objeto tipo dataset de mlflow
     mlflow_dataset = mlflow.data.from_pandas(
         df , name="datos_transformados",
     )
+
+    # Agregar datos para el control de versiones de mlflow
     mlflow.log_input(mlflow_dataset, context="feature engineering")
+
+    # Log metadata de version
+    mlflow.log_params({
+        "data_size": len(df),
+        "features_count": len(df.columns) - 2,
+        "salidas_distribution": df["salidas_siguiente_hora"].value_counts().to_dict(),
+        "llegadas_distribution": df["llegadas_siguiente_hora"].value_counts().to_dict(),
+    })
+
+    # Log data quality metrics
+    mlflow.log_metrics({
+        "missing_values_pct": (df.isnull().sum().sum() / df.size) * 100,
+        "duplicate_rows": df.duplicated().sum(),
+        "salidas_balance": df["salidas_siguiente_hora"].std(),
+        "llegadas_balance": df["llegadas_siguiente_hora"].std(),
+    })
 
     
 
