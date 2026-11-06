@@ -54,13 +54,60 @@ recta), préstamos de más de 180 min, estaciones fuera del catálogo, duplicado
 convierte en faltantes las edades fuera de 16 a 90 años. Resultado: 7,894,097 viajes originales,
 7,644,409 válidos (`viajes/`) y 249,688 excluidos con su motivo (`revision/`).
 
-**Ingeniería de características** `feature.py` aplica las reglas que se encuentra en el notebook enfocado en el preprocesamiento
-de los datos previo a realizar entrenamiento con el modelo. Se puede ejecutar sencillamente solamente ejecutando `mlflow ui` desde
-la ruta raíz del proyecto para que se registren correctamente los experimentos y posteriormente utilizando una entry previamente 
-creada en la configuración del proyecto se ejecuta el siguiente comando en la terminal.
-`mlflow run . -e **features** --experiment-name "Feature Engineering Experiment" --env-manager local`
+**Ingeniería de variables por zona y hora.** `features.py` genera observaciones
+horarias sobre la cuadrícula de 1 km definida en el EDA. Las salidas y llegadas de
+la siguiente hora se construyen por zona sobre un calendario continuo. Las
+funciones se organizan en pipelines de Scikit-Learn y su importación no inicia
+procesamientos ni registros de MLflow.
 
-El resultado es un solo archivo parquet dentro de data/processed/datos_feature_engineered.parquet con las transformaciones de las características que se tienen en el script features.py
+Desde la raíz del repositorio, con el entorno Python activado, abrir una terminal:
+
+```bash
+mlflow ui --port 5000
+```
+
+En una segunda terminal, ejecutar:
+
+```bash
+python -m proyecto_mlops_equipo_9.features --experiment-name mibici-feature-engineering
+```
+
+También se admite la entrada `features` de `MLproject`. Para que el comando y el
+script utilicen el mismo servidor y experimento, configurar primero la conexión:
+
+```bash
+# Git Bash, Linux o macOS
+export MLFLOW_TRACKING_URI=http://127.0.0.1:5000
+mlflow run . -e features --experiment-name mibici-feature-engineering --env-manager local
+```
+
+```powershell
+# PowerShell
+$env:MLFLOW_TRACKING_URI = "http://127.0.0.1:5000"
+mlflow run . -e features --experiment-name mibici-feature-engineering --env-manager local
+```
+
+La salida es `data/processed/datos_feature_engineered_zona_hora.parquet`, acompañada
+de un contrato `.metadata.json` con predictores, objetivos, columnas de auditoría,
+parámetros y huellas de las fuentes. `--output-path` permite elegir otra ruta;
+`--sin-mlflow` genera los archivos sin registrar una ejecución. No se entrenan modelos.
+
+La política de cobertura asigna ceros después de la primera actividad zonal en
+horas con señal de actividad global, excluyendo fallas conocidas. Los rezagos
+requieren su hora exacta y las medias de 24 y 168 horas exigen al menos 75% de
+observaciones. Esta hipótesis de cobertura y la latencia de aceptación de silver
+requieren validación operativa antes del despliegue.
+
+El notebook `1.0-FC-feature-engineering.ipynb` documenta la metodología y compara
+la salida del script con una referencia independiente, usando un archivo separado.
+La versión validada produce 806,774 filas y 43 columnas (29 predictores, 2 objetivos
+y 12 campos de auditoría), con igualdad exacta de valores y tipos.
+
+MLflow registra parámetros, métricas de preparación, perfil del dataset, contrato
+y código fuente en `http://127.0.0.1:5000`. El Parquet y las nuevas bases y artefactos
+locales de MLflow no forman parte del cambio en Git; cada integrante puede
+reproducirlos con las fuentes versionadas. La consulta de la entrega de limpieza
+del puerto 5001 corresponde a su registro histórico y conserva su flujo existente.
 
 Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_mlflow.md` y
 `docs/abrir_mlflow.md`.
@@ -80,7 +127,8 @@ python -m pytest tests/
 | `1.1-AG-limpieza-datos` | Exploración temporal y por estación (usa una versión anterior de la limpieza) |
 | `1.2-integracion-limpieza-final` | Reglas finales importadas de `cleaning.py` y sensibilidad de umbrales |
 | `1.0-EDA-integral-mibici` | EDA completo de demanda por zona y hora, y preprocesamiento (requiere `make data`) |
-| `1.0-FV-feature-engineering` | Proceso basado en preprocesamiento del EDA final, analizando nuevas posibilidades y utilizando datoss desde ruta |
+| `1.0-FV-feature-engineering` | Exploración inicial de ingeniería de variables |
+| `1.0-FC-feature-engineering` | Variables por zona y hora, trazabilidad en MLflow y validación de `features.py` |
 
 ## Organización del proyecto
 
@@ -99,7 +147,7 @@ python -m pytest tests/
 ├── reports
 │   └── versionado/version_001    <- Evidencia del registro en MLflow
 ├── requirements.txt
-├── tests                         <- Pruebas de limpieza y de open_mlflow
+├── tests                         <- Pruebas de limpieza, MLflow y variables
 └── proyecto_mlops_equipo_9
     ├── config.py                 <- Rutas del proyecto
     ├── download.py               <- Descarga de datos crudos
@@ -108,7 +156,7 @@ python -m pytest tests/
     ├── register_data.py          <- Registro de una versión en MLflow
     ├── open_mlflow.py            <- Abre la base de MLflow en otra computadora
     ├── eda.py                    <- Funciones del EDA (reutiliza las reglas de cleaning.py)
-    ├── features.py               <- Variables para el modelo, concluyendo sobre variables objetivo
+    ├── features.py               <- Pipelines de variables por zona/hora y registro explícito en MLflow
     └── modeling                  <- Entrenamiento y predicción (fase siguiente)
 ```
 

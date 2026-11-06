@@ -198,3 +198,9 @@ cython_debug/
 
 # Salidas intermedias locales
 /data/interim/
+
+# Ejecuciones locales de MLflow (se conservan los registros históricos versionados)
+/mlruns/
+/mlartifacts/[0-9]*/
+/mlflow.db
+/mlflow.db-*
