@@ -1,19 +1,25 @@
 name: proyecto_mlops_equipo_9
 
 entry_points: 
-  main: 
-    parameters: 
-      experimentname: 
-        type: string 
-        default: "Train Experiment" 
-    command: "python ./proyecto_mlops_equipo_9/modeling/train.py --experiment-name {experimentname}"
+  main:
+    parameters:
+      experimentname:
+        type: string
+        default: "mibici-entrenamiento"
+      trackinguri:
+        type: string
+        default: "http://127.0.0.1:5000"
+    command: >-
+      python -m proyecto_mlops_equipo_9.modeling.train
+      --experiment-name {experimentname}
+      --tracking-uri {trackinguri}
 
-  predict: 
-    parameters: 
-      experimentname: 
-        type: string 
-        default: "Predic Experiment" 
-    command: "python ./proyecto_mlops_equipo_9/modeling/predict.py --experiment-name {experimentname}"
+  predict:
+    parameters:
+      trackinguri:
+        type: string
+        default: "http://127.0.0.1:5000"
+    command: "python -m proyecto_mlops_equipo_9.modeling.predict --tracking-uri {trackinguri}"
 
   features:
     parameters:
