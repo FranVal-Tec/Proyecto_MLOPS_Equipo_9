@@ -34,6 +34,7 @@ AUDITORIA = [
     "primera_hora_observada_zona",
     "zona_observada",
     "cobertura_horaria_asumida",
+    "cierre_nocturno",
     "salidas_sin_registros",
     "llegadas_sin_registros",
     "salidas_cero_asumido",
@@ -61,11 +62,14 @@ class ConfiguracionFeatures:
     """Parámetros explícitos de la metodología aprobada en el notebook."""
 
     celda_m: int = 1000
-    rezagos_h: tuple[int, ...] = (1, 24, 168)
+    # La fila t predice t+1: 23 y 167 corresponden a la misma hora de ayer y de la semana pasada.
+    rezagos_h: tuple[int, ...] = (1, 23, 24, 167, 168)
     ventanas_h: tuple[int, ...] = (24, 168)
     min_cobertura_media: float = 0.75
     asumir_cobertura_completa: bool = True
     periodos_sin_cobertura: tuple[tuple[str, str], ...] = ()
+    # Una hora de esta franja sin viajes en toda la red se interpreta como cierre del servicio.
+    horas_cierre: tuple[int, ...] = (0, 1, 2, 3, 4, 5)
 
     def __post_init__(self):
         if self.celda_m <= 0 or not 0 < self.min_cobertura_media <= 1:
@@ -78,6 +82,8 @@ class ConfiguracionFeatures:
         for inicio, fin in self.periodos_sin_cobertura:
             if pd.Timestamp(inicio) >= pd.Timestamp(fin):
                 raise ValueError("Cada periodo sin cobertura debe cumplir inicio < fin.")
+        if any(not isinstance(h, int) or not 0 <= h <= 23 for h in self.horas_cierre):
+            raise ValueError("Las horas de cierre deben ser enteros entre 0 y 23.")
 
 
 @dataclass
@@ -268,8 +274,13 @@ def construir_panel(
     horas_calendario,
     asumir_cobertura=True,
     periodos_sin_cobertura=(),
+    horas_cierre=(),
 ):
-    """Calendario continuo; ceros solo en zonas observadas y horas cubiertas."""
+    """Calendario continuo; ceros en zonas observadas, horas cubiertas y cierres nocturnos.
+
+    Una hora sin viajes en toda la red es desconocida (posible falla), salvo dentro de
+    `horas_cierre`, donde se trata como cierre: cero conocido para las variables.
+    """
     exigir(not conteos_fuente.index.has_duplicates, "Conteos zona/hora duplicados.")
     indice = pd.MultiIndex.from_product(
         [zonas_catalogo, horas_calendario], names=["zona_id", "inicio_hora"]
@@ -281,14 +292,16 @@ def construir_panel(
     out["primera_hora_observada_zona"] = out.zona_id.map(primera)
     out["zona_observada"] = out.inicio_hora.ge(out.primera_hora_observada_zona)
     actividad_red = conteos_fuente.groupby(level="inicio_hora").sum(min_count=1).sum(axis=1)
-    out["cobertura_horaria_asumida"] = out.inicio_hora.map(actividad_red).fillna(0).gt(0) & bool(
-        asumir_cobertura
+    sin_actividad = ~out.inicio_hora.map(actividad_red).fillna(0).gt(0)
+    out["cobertura_horaria_asumida"] = ~sin_actividad & bool(asumir_cobertura)
+    out["cierre_nocturno"] = (
+        sin_actividad & out.inicio_hora.dt.hour.isin(horas_cierre) & bool(asumir_cobertura)
     )
     for inicio, fin in periodos_sin_cobertura:
         exigir(pd.Timestamp(inicio) < pd.Timestamp(fin), "Periodo de cobertura inválido.")
         fuera = out.inicio_hora.ge(pd.Timestamp(inicio)) & out.inicio_hora.lt(pd.Timestamp(fin))
-        out.loc[fuera, "cobertura_horaria_asumida"] = False
-    elegible = out.zona_observada & out.cobertura_horaria_asumida
+        out.loc[fuera, ["cobertura_horaria_asumida", "cierre_nocturno"]] = False
+    elegible = out.zona_observada & (out.cobertura_horaria_asumida | out.cierre_nocturno)
     for variable in ("salidas", "llegadas"):
         out[f"{variable}_sin_registros"] = out[variable].isna()
         out[f"{variable}_cero_asumido"] = out[variable].isna() & elegible
@@ -390,6 +403,7 @@ def crear_pipeline_features(zonas, horas, inicio_periodo, duracion_max, config=N
                         "horas_calendario": horas,
                         "asumir_cobertura": config.asumir_cobertura_completa,
                         "periodos_sin_cobertura": config.periodos_sin_cobertura,
+                        "horas_cierre": config.horas_cierre,
                     },
                 ),
             ),
@@ -427,6 +441,10 @@ def agregar_variables_objetivo(frame):
     validar_calendario(out)
     for variable in ("salidas", "llegadas"):
         out[f"{variable}_siguiente_hora"] = out.groupby("zona_id")[variable].shift(-1)
+    if "cierre_nocturno" in out:
+        # Un cierre es cero conocido como variable, pero no se pronostica: inflaría las métricas.
+        siguiente_cierre = out.groupby("zona_id")["cierre_nocturno"].shift(-1, fill_value=False)
+        out.loc[siguiente_cierre.astype(bool), OBJETIVOS] = np.nan
     return out
 
 
@@ -503,7 +521,9 @@ def exportar_resultados(dataset, features, balance, contexto, config, output_pat
         "min_fraccion_observada_medias": config.min_cobertura_media,
         "convencion_temporal": "Fila t resume [t,t+1h); emisión t+1h; objetivo [t+1h,t+2h).",
         "cobertura_completa_asumida": config.asumir_cobertura_completa,
-        "regla_ceros": "Desde primera actividad zonal; solo horas con actividad global y fuera de fallas conocidas.",
+        "regla_ceros": "Desde primera actividad zonal; horas con actividad global o de cierre nocturno, fuera de fallas conocidas.",
+        "horas_cierre": list(config.horas_cierre),
+        "regla_cierre": "Hora nocturna sin viajes en la red: cero en variables y objetivo excluido.",
         "periodos_sin_cobertura": [[str(a), str(b)] for a, b in config.periodos_sin_cobertura],
         "disponibilidad": "Dataset offline retrospectivo; validar latencia de aceptación silver antes de producción.",
         "fuentes": {
