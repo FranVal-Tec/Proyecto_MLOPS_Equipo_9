@@ -1,0 +1,25 @@
+{
+  "ganador": "hist_gradient_boosting",
+  "hiperparametros": {
+    "modelo__estimator__min_samples_leaf": 50,
+    "modelo__estimator__max_leaf_nodes": 63,
+    "modelo__estimator__max_iter": 200,
+    "modelo__estimator__loss": "poisson",
+    "modelo__estimator__learning_rate": 0.1
+  },
+  "prueba": {
+    "mae_salidas": 2.016108748011631,
+    "mae_llegadas": 1.9898969419247634,
+    "mae": 2.0030028449681967,
+    "mae_flujo_neto": 2.197302805875596,
+    "wape": 0.2642580130649242,
+    "mae_volumen_bajo": 0.8865926582453728,
+    "mae_volumen_medio": 1.4735511148012057,
+    "mae_volumen_alto": 3.648864761858012,
+    "mae_linea_base": 2.8372471817947456,
+    "mae_flujo_neto_linea_base": 2.821673814713258,
+    "mejora_contra_base": 0.2940330127665628
+  },
+  "cumple_criterio_despliegue": true,
+  "version_registro": "1"
+}
