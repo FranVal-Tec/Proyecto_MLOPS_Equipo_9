@@ -99,6 +99,22 @@ def test_pipeline_sklearn_sin_objetivos_y_borde_inicial():
     assert result.loc[0, "llegadas_borde_inicial"]
 
 
+def test_cierre_nocturno_en_variables_y_no_como_objetivo():
+    horas = pd.date_range("2026-01-01", periods=10, freq="h")
+    activas = [0, 1, 2, 5, 6, 7, 9]
+    counts = pd.DataFrame(
+        {"zona_id": "A", "inicio_hora": horas[activas], "salidas": 1.0, "llegadas": 1.0}
+    ).set_index(["zona_id", "inicio_hora"])
+    panel = construir_panel(counts, ["A"], horas, horas_cierre=(0, 1, 2, 3, 4, 5))
+    assert panel.loc[[3, 4], "salidas"].eq(0).all()
+    assert panel.loc[[3, 4], "cierre_nocturno"].all()
+    assert pd.isna(panel.loc[8, "salidas"])
+    objetivos = agregar_variables_objetivo(panel)
+    assert objetivos.loc[[2, 3], "salidas_siguiente_hora"].isna().all()
+    assert objetivos.loc[4, "salidas_siguiente_hora"] == 1
+    assert pd.isna(objetivos.loc[7, "salidas_siguiente_hora"])
+
+
 @pytest.mark.parametrize(
     "kwargs",
     [
@@ -109,6 +125,7 @@ def test_pipeline_sklearn_sin_objetivos_y_borde_inicial():
         {"ventanas_h": ()},
         {"rezagos_h": (1, 1)},
         {"periodos_sin_cobertura": (("2026-02-01", "2026-01-01"),)},
+        {"horas_cierre": (24,)},
     ],
 )
 def test_configuracion_invalida(kwargs):

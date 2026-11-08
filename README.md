@@ -109,6 +109,27 @@ locales de MLflow no forman parte del cambio en Git; cada integrante puede
 reproducirlos con las fuentes versionadas. La consulta de la entrega de limpieza
 del puerto 5001 corresponde a su registro histórico y conserva su flujo existente.
 
+**Entrenamiento y selección de modelos.** Con `mlflow ui --port 5000` activo:
+
+```bash
+# Prueba rápida con un modelo y una configuración
+python -m proyecto_mlops_equipo_9.modeling.train --modelos hist_gradient_boosting --n-iter 1
+
+# Corrida completa: línea base, regresión Ridge, Random Forest y gradient boosting
+python -m proyecto_mlops_equipo_9.modeling.train
+
+# Pronóstico con el modelo registrado
+python -m proyecto_mlops_equipo_9.modeling.predict
+```
+
+La selección usa seis ventanas con fecha de corte móvil (octubre de 2025 a marzo de 2026) y
+el MAE promedio. El ganador se evalúa una sola vez en abril y mayo de 2026, se compara mes a
+mes en el escenario de drift (junio a septiembre de 2026) y se publica en el Model Registry
+con el alias `candidato`. Los resúmenes quedan en `reports/modelado/`.
+
+Las figuras de comparación de modelos, drift y error por volumen se generan con
+`python -m proyecto_mlops_equipo_9.plots` y se guardan en `reports/figures/`.
+
 Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_mlflow.md` y
 `docs/abrir_mlflow.md`.
 
