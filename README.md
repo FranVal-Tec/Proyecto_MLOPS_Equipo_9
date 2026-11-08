@@ -127,6 +127,9 @@ el MAE promedio. El ganador se evalúa una sola vez en abril y mayo de 2026, se 
 mes en el escenario de drift (junio a septiembre de 2026) y se publica en el Model Registry
 con el alias `candidato`. Los resúmenes quedan en `reports/modelado/`.
 
+Las figuras de comparación de modelos, drift y error por volumen se generan con
+`python -m proyecto_mlops_equipo_9.plots` y se guardan en `reports/figures/`.
+
 Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_mlflow.md` y
 `docs/abrir_mlflow.md`.
 
