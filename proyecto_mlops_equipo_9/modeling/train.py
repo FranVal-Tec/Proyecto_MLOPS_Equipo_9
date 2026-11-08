@@ -132,14 +132,14 @@ def buscar_hiperparametros(nombre, df, columnas, ventanas, config):
     )
     busqueda.fit(df[columnas], df[OBJETIVOS])
     resultados = pd.DataFrame(busqueda.cv_results_)
-    mejor = int(resultados.mean_test_mae.idxmin())
+    mejor = int(resultados.mean_test_mae.idxmax())
     parametros = resultados.loc[mejor, "params"]
     por_ventana = [
-        {
-            metrica: float(resultados.loc[mejor, f"split{i}_test_{metrica}"])
-            for metrica in ("mae", "mae_salidas", "mae_llegadas", "mae_flujo_neto", "wape")
-        }
-        for i in range(len(ventanas))
+    {
+        metrica: -float(resultados.loc[mejor, f"split{i}_test_{metrica}"])
+        for metrica in ("mae", "mae_salidas", "mae_llegadas", "mae_flujo_neto", "wape")
+    }
+    for i in range(len(ventanas))
     ]
     return parametros, por_ventana
 
