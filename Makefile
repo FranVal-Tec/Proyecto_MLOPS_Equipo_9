@@ -77,6 +77,21 @@ verify_data:
 	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.cleaning --verificar data/silver/version_001
 
 
+## Generar variables por zona y hora sin MLflow
+
+.PHONY: features
+features:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.features --sin-mlflow
+
+
+## Generar variables por zona y hora registrando en MLflow
+
+.PHONY: features_mlflow
+features_mlflow:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.features
+
+
+
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################

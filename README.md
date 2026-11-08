@@ -40,6 +40,8 @@ python -m pip install -r requirements.txt
 | 3. Verificar | `make verify_data` | Relee los Parquet de `version_001` y comprueba huellas y balance de filas |
 | 4. Registrar en MLflow | `python -m proyecto_mlops_equipo_9.register_data --paso preparar` (luego `registrar` y `verificar`) | Run con los datasets de entrada y salida |
 | 5. Consultar MLflow | `python -m proyecto_mlops_equipo_9.open_mlflow` | Interfaz en http://127.0.0.1:5001 |
+| 6. Generar variables | `make features` o `make features_mlflow` | Genera el dataset por zona y hora en `data/processed/`, opcionalmente registrando el proceso en MLflow |
+
 
 - `data/raw/` no se sube a Git: se descarga con `make data`. Para agregar un mes, añadir su enlace a
   `references/urls_mibici.csv` (`viajes,AAAA-MM,<url>`) y correr el script con el nuevo `--hasta`.
@@ -59,6 +61,29 @@ horarias sobre la cuadrícula de 1 km definida en el EDA. Las salidas y llegadas
 la siguiente hora se construyen por zona sobre un calendario continuo. Las
 funciones se organizan en pipelines de Scikit-Learn y su importación no inicia
 procesamientos ni registros de MLflow.
+
+### Ejecución mediante Makefile
+
+Para facilitar la reproducción de la ingeniería de variables, se incorporaron comandos al `Makefile` que permiten ejecutar el módulo `features.py` sin escribir manualmente sus argumentos.
+
+Una vez disponibles los datos limpios y con el entorno Python 3.12 activado, ejecutar:
+
+```bash
+make features
+```
+
+Este comando genera el dataset de variables por zona y hora sin requerir una conexión activa con MLflow.
+
+Para generar las variables y registrar el experimento en MLflow, iniciar previamente el servidor de tracking en el puerto 5000 y ejecutar:
+
+```bash
+make features_mlflow
+```
+
+Ambos comandos utilizan la configuración definida en `features.py` y generan por defecto el archivo `data/processed/datos_feature_engineered_zona_hora.parquet`.
+
+**Validación:** se verificó la resolución de ambos comandos mediante `make -n`. Adicionalmente, se ejecutó la suite de pruebas automatizadas utilizando Python 3.12.6, con 25 pruebas aprobadas. La ejecución completa de estos comandos con el dataset queda pendiente de validación.
+
 
 Desde la raíz del repositorio, con el entorno Python activado, abrir una terminal:
 
@@ -154,7 +179,7 @@ python -m pytest tests/
 ## Organización del proyecto
 
 ```
-├── Makefile                      <- Comandos: make requirements, make data, make clean_data, make verify_data
+├── Makefile  <- Instalación, descarga, limpieza, verificación, features y pruebas
 ├── README.md
 ├── data
 │   ├── raw                       <- CSV originales (no se versionan en Git)
