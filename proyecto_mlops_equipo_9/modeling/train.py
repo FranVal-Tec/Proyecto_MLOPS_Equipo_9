@@ -135,11 +135,11 @@ def buscar_hiperparametros(nombre, df, columnas, ventanas, config):
     mejor = int(resultados.mean_test_mae.idxmax())
     parametros = resultados.loc[mejor, "params"]
     por_ventana = [
-    {
-        metrica: -float(resultados.loc[mejor, f"split{i}_test_{metrica}"])
-        for metrica in ("mae", "mae_salidas", "mae_llegadas", "mae_flujo_neto", "wape")
-    }
-    for i in range(len(ventanas))
+        {
+            metrica: -float(resultados.loc[mejor, f"split{i}_test_{metrica}"])
+            for metrica in ("mae", "mae_salidas", "mae_llegadas", "mae_flujo_neto", "wape")
+        }
+        for i in range(len(ventanas))
     ]
     return parametros, por_ventana
 
@@ -156,9 +156,7 @@ def resumir(por_ventana):
 def evaluar_base_ventanas(df, ventanas):
     """Métricas de la línea base con las mismas filas que evalúan los modelos."""
     return [
-        metricas(
-            df.iloc[evaluacion][OBJETIVOS], prediccion_base(df.iloc[evaluacion])
-        )
+        metricas(df.iloc[evaluacion][OBJETIVOS], prediccion_base(df.iloc[evaluacion]))
         for _, evaluacion in (indices_ventana(df, v) for v in ventanas)
     ]
 
