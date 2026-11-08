@@ -21,6 +21,7 @@ from proyecto_mlops_equipo_9.modeling.validation import (
     prediccion_base,
     ventana_periodo,
     ventanas_mensuales,
+    scorer_metricas,
 )
 
 
@@ -85,6 +86,30 @@ def test_metricas_recortan_negativos_y_calculan_flujo():
     assert resultado["mae_llegadas"] == 1
     assert resultado["mae"] == 0.75
     assert resultado["mae_flujo_neto"] == 1.5
+
+
+def test_scorer_prioriza_menor_error():
+    """Un menor MAE debe producir un score mayor sin alterar las métricas originales."""
+
+    class EstimadorFalso:
+        def __init__(self, predicciones):
+            self.predicciones = predicciones
+
+        def predict(self, X):
+            return self.predicciones
+
+    y_real = np.array([[2, 4], [3, 5]], dtype=float)
+    X = np.zeros((2, 1))
+
+    perfecto = scorer_metricas(EstimadorFalso(y_real), X, y_real)
+    impreciso = scorer_metricas(EstimadorFalso(y_real + 2), X, y_real)
+
+    assert perfecto["mae"] == 0.0
+    assert impreciso["mae"] == -2.0
+    assert perfecto["mae"] > impreciso["mae"]
+
+    for nombre, valor in metricas(y_real, y_real + 2).items():
+        assert impreciso[nombre] == -valor
 
 
 def test_linea_base_exige_rezago_de_misma_hora():

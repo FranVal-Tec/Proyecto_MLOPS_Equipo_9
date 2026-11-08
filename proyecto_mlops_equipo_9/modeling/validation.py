@@ -74,8 +74,9 @@ def metricas(y_real, y_pred):
 
 
 def scorer_metricas(estimador, X, y):
-    """Scorer de varias métricas para la búsqueda de hiperparámetros."""
-    return metricas(y, estimador.predict(X))
+    """Devuelve errores negativos para que Scikit-Learn priorice el menor error."""
+    errores = metricas(y, estimador.predict(X))
+    return {nombre: -valor for nombre, valor in errores.items()}
 
 
 def prediccion_base(df):
