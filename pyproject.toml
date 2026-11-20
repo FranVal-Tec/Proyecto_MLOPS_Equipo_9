@@ -30,3 +30,5 @@ extend-select = ["I"]  # Add import sorting
 known-first-party = ["proyecto_mlops_equipo_9"]
 force-sort-within-sections = true
 
+[tool.fastapi]
+entrypoint = "proyecto_mlops_equipo_9.fastAPI:app"

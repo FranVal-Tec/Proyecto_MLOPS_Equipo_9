@@ -16,4 +16,6 @@ ruff
 scikit-learn
 tqdm
 typer
+uv
+fastapi[standard]
 -e .
