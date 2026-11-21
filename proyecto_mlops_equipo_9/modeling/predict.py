@@ -4,7 +4,6 @@ Uso: python -m proyecto_mlops_equipo_9.modeling.predict --desde "2026-09-30 18:0
 Sin fechas, usa la última hora objetivo disponible en el dataset.
 """
 
-import json
 import argparse
 from pathlib import Path
 
@@ -45,46 +44,6 @@ def seleccionar_filas(df, desde=None, hasta=None):
         raise ValueError("No hay filas en el periodo solicitado.")
     return filas
 
-def generar_pronostico_api(desde=None, hasta=None, dataset=None,
-                       modelo_uri=None, tracking_uri=None):
-
-    config = ConfiguracionEntrenamiento()
-
-    import mlflow
-
-    mlflow.set_tracking_uri(
-        tracking_uri or "http://127.0.0.1:5000"
-    )
-
-    # URI del modelo registrado
-    if modelo_uri is None:
-        modelo_uri = (
-            f"models:/{config.nombre_registro}@"
-            f"{config.alias_registro}"
-        )
-
-    # Ruta del dataset
-    if dataset is None:
-        dataset = (
-            PROCESSED_DATA_DIR /
-            "datos_feature_engineered_zona_hora.parquet"
-        )
-
-    # Cargar modelo y datos
-    modelo = mlflow.sklearn.load_model(modelo_uri)
-    df = pd.read_parquet(dataset)
-
-    # Seleccionar periodo
-    filas = seleccionar_filas(
-        df,
-        desde=desde,
-        hasta=hasta
-    )
-
-    # Generar pronósticos
-    resultado = predecir(modelo, filas)
-    
-    return resultado, str(modelo_uri)
 
 def main():
     config = ConfiguracionEntrenamiento()
