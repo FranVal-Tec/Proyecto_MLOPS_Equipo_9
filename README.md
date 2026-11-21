@@ -227,6 +227,24 @@ Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_m
 python -m pytest tests/
 ```
 
+## FastAPI
+
+FastAPI se encuentra implementado con dos rutas finales.
+La raíz '/' y '/predict'
+
+Para ejecutar fastAPI como servicio se utiliza el comando `uv run fastapi dev`
+Hay que tener en cuenta que para correr predict es necesario ejecutar antes `mlflow ui`
+
+**'/'** Solo nos da como resultado un mensaje de confirmación de que el sistema se encuentra funcionando.
+**'/predict'** Permite realizar una ejecución de una preducción sobre el modelo selecionado. Los parametros se pueden
+cambiar utilizando un request.
+**'/docs'** Aquí se pueden ver todas las específicaciones de las llamadas anteriores, incluyendo formatos de entrada
+y salida, en conjunto con ejemplos.
+
+El modelo utilizado actualmente es el generado a partir de ejecutar cualquiuera de las versiones de entranmiento mencionadas anteriormente. 
+Se utiliza el modelo que tengga el alias de candidato, por lo que se utilizará por defecto el más nuevo.
+Por ejemplo: **models:/mibici-demanda-zona-hora@candidato**
+
 ## Notebooks
 
 | Notebook | Contenido |
@@ -266,6 +284,7 @@ python -m pytest tests/
     ├── open_mlflow.py            <- Abre la base de MLflow en otra computadora
     ├── eda.py                    <- Funciones del EDA (reutiliza las reglas de cleaning.py)
     ├── features.py               <- Pipelines de variables por zona/hora y registro explícito en MLflow
+    ├── fastAPI.py                <- Se encarga de controlar todo lo relacioinado con las llamadas a la API
     └── modeling                  <- Entrenamiento y predicción (fase siguiente)
 ```
 
