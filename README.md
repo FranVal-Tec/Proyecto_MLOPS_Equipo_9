@@ -82,7 +82,7 @@ make features_mlflow
 
 Ambos comandos utilizan la configuración definida en `features.py` y generan por defecto el archivo `data/processed/datos_feature_engineered_zona_hora.parquet`.
 
-**Validación:** se verificó la resolución de ambos comandos mediante `make -n`. Adicionalmente, se ejecutó la suite de pruebas automatizadas utilizando Python 3.12.6, con 25 pruebas aprobadas. La ejecución completa de estos comandos con el dataset queda pendiente de validación.
+**Validación:** se ejecutó la suite de pruebas automatizadas con Python 3.12.6, obteniendo 39 pruebas aprobadas. También se ejecutó la ingeniería de variables sobre los datos versionados de MiBici: se generaron 891,854 registros y 48 columnas. La ejecución se repitió en las mismas condiciones y produjo un archivo Parquet idéntico, verificado mediante SHA-256.
 
 
 Desde la raíz del repositorio, con el entorno Python activado, abrir una terminal:
@@ -134,23 +134,86 @@ locales de MLflow no forman parte del cambio en Git; cada integrante puede
 reproducirlos con las fuentes versionadas. La consulta de la entrega de limpieza
 del puerto 5001 corresponde a su registro histórico y conserva su flujo existente.
 
-**Entrenamiento y selección de modelos.** Con `mlflow ui --port 5000` activo:
+**Entrenamiento y selección de modelos.** El entrenamiento utiliza MLflow para registrar ejecuciones, métricas y modelos. Para mantener aislado este proceso del registro histórico de limpieza, se puede iniciar un servidor de tracking independiente en el puerto `5003`.
+
+En una terminal, desde la raíz del repositorio:
+
+```bash
+mkdir -p .local/mlflow-entrenamiento
+
+mlflow server \
+  --backend-store-uri sqlite:///$PWD/.local/mlflow-entrenamiento/tracking.db \
+  --artifacts-destination $PWD/.local/mlflow-entrenamiento/artifacts \
+  --host 127.0.0.1 \
+  --port 5003
+```
+
+En una segunda terminal, ejecutar el entrenamiento:
 
 ```bash
 # Prueba rápida con un modelo y una configuración
-python -m proyecto_mlops_equipo_9.modeling.train --modelos hist_gradient_boosting --n-iter 1
+python -m proyecto_mlops_equipo_9.modeling.train \
+  --experiment-name mibici-entrenamiento \
+  --tracking-uri http://127.0.0.1:5003 \
+  --modelos hist_gradient_boosting \
+  --n-iter 1 \
+  --salida .local/mlflow-entrenamiento/reports/modelado
 
 # Corrida completa: línea base, regresión Ridge, Random Forest y gradient boosting
-python -m proyecto_mlops_equipo_9.modeling.train
+python -m proyecto_mlops_equipo_9.modeling.train \
+  --tracking-uri http://127.0.0.1:5003
 
 # Pronóstico con el modelo registrado
-python -m proyecto_mlops_equipo_9.modeling.predict
+python -m proyecto_mlops_equipo_9.modeling.predict \
+  --tracking-uri http://127.0.0.1:5003
 ```
 
-La selección usa seis ventanas con fecha de corte móvil (octubre de 2025 a marzo de 2026) y
-el MAE promedio. El ganador se evalúa una sola vez en abril y mayo de 2026, se compara mes a
-mes en el escenario de drift (junio a septiembre de 2026) y se publica en el Model Registry
-con el alias `candidato`. Los resúmenes quedan en `reports/modelado/`.
+La selección utiliza seis ventanas con fecha de corte móvil (octubre de 2025 a marzo de 2026) y el MAE promedio. El ganador se evalúa en abril y mayo de 2026, se compara mes a mes en el escenario de drift (junio a septiembre de 2026) y se publica en el Model Registry con el alias `candidato`. Los resúmenes se guardan en la ruta indicada mediante `--salida`.
+
+### Reproducibilidad del entrenamiento
+
+Las dependencias del proyecto se encuentran fijadas mediante versiones específicas
+en `requirements.txt`. La configuración de entrenamiento utiliza la semilla aleatoria
+`9`, aplicada a los algoritmos y al proceso de búsqueda de hiperparámetros.
+
+Para validar el registro del modelo se utilizó un servidor MLflow independiente
+en el puerto `5003`, evitando modificar el registro histórico de limpieza y
+manteniendo aislados los artefactos de entrenamiento.
+
+La validación se realizó con `HistGradientBoostingRegressor` y una iteración de
+búsqueda de hiperparámetros (`n_iter=1`). El entrenamiento utilizó seis ventanas
+temporales, con evaluación en abril y mayo de 2026. El modelo obtenido alcanzó:
+
+| Métrica | Resultado |
+|---|---:|
+| MAE | 2.0237 |
+| WAPE | 26.70% |
+| Mejora frente a la línea base | 28.67% |
+| Criterio mínimo de mejora | 10% |
+| Criterio de despliegue | Cumplido |
+
+El modelo se registró en MLflow como `mibici-demanda-zona-hora`, versión `1`,
+con el alias `candidato`.
+
+**Validación de reproducibilidad entre entornos:** se exportó el artefacto
+`model.skops` junto con un conjunto fijo de entradas y sus predicciones de
+referencia. Posteriormente, el modelo se cargó y ejecutó desde un segundo entorno
+Conda independiente, utilizando Python 3.12.6 y las mismas versiones de las
+dependencias de ejecución.
+
+La comparación confirmó que el archivo del modelo conserva el mismo SHA-256:
+
+`d697a222823feea0f0127abb84960fd76aa396b974b3dc7fa521ceba078129e5`
+
+Las predicciones obtenidas en ambos entornos fueron idénticas, con una diferencia
+máxima de `0.0`.
+
+Esta validación demuestra reproducibilidad entre dos entornos Conda con la misma
+versión de Python, dependencias y arquitectura. No representa todavía una
+validación entre sistemas operativos o arquitecturas diferentes.
+
+Los archivos auxiliares de esta prueba y los artefactos locales de MLflow se
+almacenan en `.local/`, directorio excluido del control de versiones.
 
 Las figuras de comparación de modelos, drift y error por volumen se generan con
 `python -m proyecto_mlops_equipo_9.plots` y se guardan en `reports/figures/`.
