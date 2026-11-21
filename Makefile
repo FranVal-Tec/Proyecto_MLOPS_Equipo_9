@@ -91,6 +91,68 @@ features_mlflow:
 	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.features
 
 
+## Promover a @campeon la versión de @candidato si cumplió el criterio (requiere mlflow ui --port 5000)
+
+.PHONY: promote_model
+promote_model:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.promote
+
+
+## Exportar a models/ el modelo @campeon y los datos recientes (requiere mlflow ui --port 5000)
+
+.PHONY: export_model
+export_model:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.export
+
+
+## Verificar que el modelo exportado reproduce su referencia, sin servidor de MLflow
+
+.PHONY: verify_model
+verify_model:
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.export --verificar
+
+
+## Levantar la API en http://127.0.0.1:8000/docs
+
+.PHONY: api
+api:
+	$(PYTHON_INTERPRETER) -m uvicorn proyecto_mlops_equipo_9.fastAPI:app --host 127.0.0.1 --port 8000
+
+
+#################################################################################
+# DOCKER                                                                        #
+#################################################################################
+
+IMAGEN ?= ml-service
+VERSION ?= 1.0.0
+DOCKERHUB_USUARIO ?=
+
+
+## Construir la imagen ml-service con tags latest y VERSION (verifica el modelo en el build)
+
+.PHONY: docker_build
+docker_build:
+	docker build --build-arg VERSION=$(VERSION) -t $(IMAGEN):latest -t $(IMAGEN):$(VERSION) .
+
+
+## Correr la imagen en http://localhost:8000/docs
+
+.PHONY: docker_run
+docker_run:
+	docker run --rm -p 8000:8000 $(IMAGEN):latest
+
+
+## Publicar en DockerHub: make docker_push DOCKERHUB_USUARIO=<usuario> VERSION=1.0.0
+
+.PHONY: docker_push
+docker_push:
+	@test -n "$(DOCKERHUB_USUARIO)" || (echo "Indica DOCKERHUB_USUARIO=<usuario>"; exit 1)
+	docker tag $(IMAGEN):$(VERSION) $(DOCKERHUB_USUARIO)/$(IMAGEN):$(VERSION)
+	docker tag $(IMAGEN):$(VERSION) $(DOCKERHUB_USUARIO)/$(IMAGEN):latest
+	docker push $(DOCKERHUB_USUARIO)/$(IMAGEN):$(VERSION)
+	docker push $(DOCKERHUB_USUARIO)/$(IMAGEN):latest
+
+
 
 #################################################################################
 # Self Documenting Commands                                                     #
