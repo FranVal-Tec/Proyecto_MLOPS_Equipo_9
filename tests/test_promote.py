@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from proyecto_mlops_equipo_9.modeling.promover import ETIQUETA_CRITERIO, promover
+from proyecto_mlops_equipo_9.modeling.promote import ETIQUETA_CRITERIO, promover
 
 
 class ClienteFalso:

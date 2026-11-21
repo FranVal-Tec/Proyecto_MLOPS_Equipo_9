@@ -235,7 +235,7 @@ La API y el contenedor no consultan el servidor de MLflow: usan una copia del mo
 | Alias | Lo asigna | Uso |
 |---|---|---|
 | `candidato` | `train.py`, en cada entrenamiento | Versión propuesta tras la prueba; no se sirve |
-| `campeon` | `promover`, solo si el run tiene `cumple_criterio_despliegue = True` | Versión que se exporta y se sirve |
+| `campeon` | `promote.py`, solo si el run tiene `cumple_criterio_despliegue = True` | Versión que se exporta y se sirve |
 
 Con `mlflow ui --port 5000` activo y el Parquet de variables generado (`make features`):
 
@@ -260,7 +260,7 @@ La exportación se niega a correr si las versiones instaladas de mlflow, scikit-
 pandas no son las de `requirements.txt`, porque esas son las que instala Docker. La verificación
 compara el binario contra su huella y las predicciones contra la referencia, y termina con error si
 no coinciden. Al promover una versión nueva, se exporta con `--reemplazar` y se actualiza la tabla.
-Para revertir: `python -m proyecto_mlops_equipo_9.modeling.promover --version <n>`.
+Para revertir: `python -m proyecto_mlops_equipo_9.modeling.promote --version <n>`.
 
 ## FastAPI
 
@@ -287,7 +287,7 @@ curl -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" \
 `predicciones`, una por zona y hora con `salidas_pronosticadas`, `llegadas_pronosticadas`,
 `flujo_neto_pronosticado` y `tendencia` (`positive`, `negative` o `balanced`).
 
-El modelo y los datos los decide el servidor, no el cliente (`modeling/servicio.py`). Si existe
+El modelo y los datos los decide el servidor, no el cliente (`modeling/serving.py`). Si existe
 `models/modelo_servicio.json` se usa la exportación; si no, el Model Registry, como en desarrollo
 con `mlflow ui`. Variables de entorno opcionales:
 
@@ -302,7 +302,7 @@ con `mlflow ui`. Variables de entorno opcionales:
 
 La imagen (`python:3.12-slim`) instala las versiones fijas de `requirements.txt` sin las herramientas
 de desarrollo, copia el paquete y `models/`, y levanta la API con uvicorn en el puerto 8000. Durante el
-build corre `exportar --verificar`: si el modelo no es el mismo binario o no reproduce sus
+build corre `modeling/export.py --verificar`: si el modelo no es el mismo binario o no reproduce sus
 predicciones de referencia en ese entorno, la imagen no se construye.
 
 ```bash

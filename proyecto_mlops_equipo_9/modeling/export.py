@@ -1,10 +1,10 @@
 """Exporta el modelo registrado y los datos recientes para servirlos sin MLflow (p. ej., en Docker).
 
 Uso:
-    python -m proyecto_mlops_equipo_9.modeling.exportar              # con mlflow ui --port 5000
-    python -m proyecto_mlops_equipo_9.modeling.exportar --verificar  # no requiere servidor
+    python -m proyecto_mlops_equipo_9.modeling.export              # con mlflow ui --port 5000
+    python -m proyecto_mlops_equipo_9.modeling.export --verificar  # no requiere servidor
 
-La exportación toma la versión con alias `campeon` del Model Registry (ver promover.py) y deja
+La exportación toma la versión con alias `campeon` del Model Registry (ver promote.py) y deja
 en models/:
 - el modelo en formato MLflow;
 - `datos_recientes.parquet`: los últimos días del dataset de variables, que la API usa cuando
@@ -35,7 +35,7 @@ import pandas as pd
 
 from proyecto_mlops_equipo_9.config import MODELS_DIR, PROCESSED_DATA_DIR, PROJ_ROOT
 from proyecto_mlops_equipo_9.modeling.predict import predecir
-from proyecto_mlops_equipo_9.modeling.promover import ALIAS_SERVICIO
+from proyecto_mlops_equipo_9.modeling.promote import ALIAS_SERVICIO
 from proyecto_mlops_equipo_9.modeling.train import ConfiguracionEntrenamiento
 from proyecto_mlops_equipo_9.modeling.validation import OBJETIVOS, metricas
 

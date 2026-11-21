@@ -8,17 +8,17 @@ pytest.importorskip("httpx")
 from fastapi.testclient import TestClient
 
 from proyecto_mlops_equipo_9 import fastAPI
-from proyecto_mlops_equipo_9.modeling import servicio
+from proyecto_mlops_equipo_9.modeling import serving
 
 
 @pytest.fixture
 def cliente(exportacion, monkeypatch, tmp_path):
     monkeypatch.setenv("MODELO_DIR", str(exportacion.modelos))
     monkeypatch.delenv("DATASET_SERVICIO", raising=False)
-    monkeypatch.setattr(servicio, "DATASET_COMPLETO", tmp_path / "no-existe.parquet")
-    servicio.cargar_servicio.cache_clear()
+    monkeypatch.setattr(serving, "DATASET_COMPLETO", tmp_path / "no-existe.parquet")
+    serving.cargar_servicio.cache_clear()
     yield TestClient(fastAPI.app)
-    servicio.cargar_servicio.cache_clear()
+    serving.cargar_servicio.cache_clear()
 
 
 def test_inicio_responde(cliente):

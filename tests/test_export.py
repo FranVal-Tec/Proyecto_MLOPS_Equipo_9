@@ -4,7 +4,7 @@ from conftest import VARIABLES_EXPORTACION
 import pandas as pd
 import pytest
 
-from proyecto_mlops_equipo_9.modeling import exportar as ex
+from proyecto_mlops_equipo_9.modeling import export as ex
 from proyecto_mlops_equipo_9.modeling.validation import OBJETIVOS
 
 

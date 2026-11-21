@@ -1,6 +1,6 @@
 """Modelo y datos que usa la API, cargados una sola vez por proceso.
 
-Si existe models/modelo_servicio.json (la exportación de `exportar.py`, que es lo que va dentro
+Si existe models/modelo_servicio.json (la exportación de `export.py`, que es lo que va dentro
 de la imagen de Docker), el modelo se carga de models/ y no se necesita servidor de MLflow. Si
 no existe, se usa el Model Registry, como en desarrollo con `mlflow ui`.
 
@@ -18,7 +18,7 @@ from pathlib import Path
 import pandas as pd
 
 from proyecto_mlops_equipo_9.config import MODELS_DIR, PROCESSED_DATA_DIR
-from proyecto_mlops_equipo_9.modeling.exportar import ARCHIVO_METADATOS, cargar_modelo_local
+from proyecto_mlops_equipo_9.modeling.export import ARCHIVO_METADATOS, cargar_modelo_local
 from proyecto_mlops_equipo_9.modeling.predict import predecir, seleccionar_filas
 from proyecto_mlops_equipo_9.modeling.train import ConfiguracionEntrenamiento
 

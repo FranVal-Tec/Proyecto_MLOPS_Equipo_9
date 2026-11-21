@@ -4,13 +4,13 @@ from typing import Literal
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from proyecto_mlops_equipo_9.modeling.servicio import generar_pronostico
+from proyecto_mlops_equipo_9.modeling.serving import generar_pronostico
 
 
 class PredictInput(BaseModel):
     """Periodo a pronosticar. Sin periodo, se usa la última hora disponible.
 
-    El modelo y los datos los decide el servidor (ver modeling/servicio.py): el cliente no
+    El modelo y los datos los decide el servidor (ver modeling/serving.py): el cliente no
     puede elegir archivos ni servidores.
     """
 

@@ -1,8 +1,8 @@
 """Promueve una versión del Model Registry al alias que usa el servicio.
 
 Uso:
-    python -m proyecto_mlops_equipo_9.modeling.promover              # la versión de @candidato
-    python -m proyecto_mlops_equipo_9.modeling.promover --version 3  # una versión concreta
+    python -m proyecto_mlops_equipo_9.modeling.promote              # la versión de @candidato
+    python -m proyecto_mlops_equipo_9.modeling.promote --version 3  # una versión concreta
 
 `train.py` asigna `candidato` en cada entrenamiento; `campeon` solo se mueve con este comando
 y solo si el run de prueba de esa versión cumplió el criterio de despliegue (mejora mínima

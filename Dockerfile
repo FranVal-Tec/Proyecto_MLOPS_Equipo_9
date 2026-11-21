@@ -29,7 +29,7 @@ COPY models ./models
 
 # Reproducibilidad: el build falla si el modelo no es el mismo binario que se exportó o si en
 # este entorno no reproduce sus predicciones de referencia.
-RUN python -m proyecto_mlops_equipo_9.modeling.exportar --verificar
+RUN python -m proyecto_mlops_equipo_9.modeling.export --verificar
 
 RUN useradd --create-home --uid 1000 servicio
 USER servicio

@@ -95,21 +95,21 @@ features_mlflow:
 
 .PHONY: promote_model
 promote_model:
-	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.promover
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.promote
 
 
 ## Exportar a models/ el modelo @campeon y los datos recientes (requiere mlflow ui --port 5000)
 
 .PHONY: export_model
 export_model:
-	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.exportar
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.export
 
 
 ## Verificar que el modelo exportado reproduce su referencia, sin servidor de MLflow
 
 .PHONY: verify_model
 verify_model:
-	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.exportar --verificar
+	$(PYTHON_INTERPRETER) -m proyecto_mlops_equipo_9.modeling.export --verificar
 
 
 ## Levantar la API en http://127.0.0.1:8000/docs
