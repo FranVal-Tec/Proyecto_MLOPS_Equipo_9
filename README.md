@@ -247,8 +247,8 @@ make verify_model    # vuelve a predecir esos días con la copia local (no requi
 
 | Artefacto | Ruta | Versión |
 |---|---|---|
-| Modelo en el Model Registry | `models:/mibici-demanda-zona-hora/2` (alias `campeon`) | 2 |
-| Copia que sirve la API y va en la imagen | `models/mibici-demanda-zona-hora/` | 2 (ver `models/modelo_servicio.json`) |
+| Modelo en el Model Registry | `models:/mibici-demanda-zona-hora/3` (alias `campeon`) | 3 |
+| Copia que sirve la API y va en la imagen | `models/mibici-demanda-zona-hora/` | 3 (ver `models/modelo_servicio.json`) |
 
 - `models/modelo_servicio.json`: versión, run de origen, huella SHA-256 de los archivos del modelo,
   variables de entrada y versiones de Python y librerías con que se exportó.
@@ -323,7 +323,7 @@ docker push <usuario>/ml-service:latest
 
 | Tag | Contenido |
 |---|---|
-| `1.0.0` | API 1.0.0 con el modelo `mibici-demanda-zona-hora` versión 2 |
+| `1.0.0` | API 1.0.0 con el modelo `mibici-demanda-zona-hora` versión 3 |
 | `latest` | Último tag publicado |
 
 Cada cambio en la API o en el modelo servido se publica con un tag nuevo (`1.0.1`, `1.1.0`, …) y se
