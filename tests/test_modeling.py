@@ -157,3 +157,61 @@ def test_modelos_se_guardan_y_cargan_con_mlflow(panel, tmp_path):
         mlflow_sklearn.save_model(modelo, ruta, skops_trusted_types=tipos_confiables(modelo))
         cargado = mlflow_sklearn.load_model(ruta)
         np.testing.assert_allclose(cargado.predict(muestra), modelo.predict(muestra))
+
+
+
+def test_integracion_pipeline_carga_prediccion_y_metricas(panel, tmp_path):
+    ruta_dataset = tmp_path / "panel_integracion.parquet"
+    panel.to_parquet(ruta_dataset, index=False)
+    datos = pd.read_parquet(ruta_dataset)
+
+    assert not datos.empty
+
+    config = ConfiguracionEntrenamiento()
+    df, columnas = preparar_dataset(datos, FEATURES, config)
+
+    assert "anio_objetivo" not in columnas
+    assert all(columna in df.columns for columna in columnas)
+
+    ventana = ventanas_mensuales("2025-05", "2025-05")[0]
+    entrenamiento, evaluacion = indices_ventana(df, ventana)
+
+    datos_entrenamiento = df.iloc[entrenamiento]
+    datos_evaluacion = df.iloc[evaluacion]
+
+    modelo = crear_pipeline("ridge", columnas, config)
+    modelo.fit(
+        datos_entrenamiento[columnas],
+        datos_entrenamiento[OBJETIVOS],
+    )
+
+    predicciones = predecir(modelo, datos_evaluacion)
+
+    assert not predicciones.empty
+    assert len(predicciones) == len(datos_evaluacion)
+
+    claves = ["zona_id", "inicio_hora_objetivo"]
+    comparacion = predicciones.merge(
+        datos_evaluacion[claves + OBJETIVOS],
+        on=claves,
+        validate="one_to_one",
+    )
+
+    assert len(comparacion) == len(datos_evaluacion)
+
+    y_real = comparacion[OBJETIVOS].to_numpy()
+    y_pred = comparacion[
+        ["salidas_pronosticadas", "llegadas_pronosticadas"]
+    ].to_numpy()
+
+    resultados = metricas(y_real, y_pred)
+
+    assert set(resultados) == {
+        "mae_salidas",
+        "mae_llegadas",
+        "mae",
+        "mae_flujo_neto",
+        "wape",
+    }
+    assert all(np.isfinite(valor) for valor in resultados.values())
+    assert all(valor >= 0 for valor in resultados.values())
