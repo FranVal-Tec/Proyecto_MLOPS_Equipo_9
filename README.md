@@ -331,6 +331,29 @@ docker push <usuario>/ml-service:latest
 Cada cambio en la API o en el modelo servido se publica con un tag nuevo (`1.0.1`, `1.1.0`, …) y se
 agrega a esta tabla; `latest` se mueve al más reciente.
 
+## Monitoreo
+
+`monitoring.py` evalúa el modelo que sirve la API en un mes posterior a la prueba, sin reentrenarlo.
+Compara su error contra abril y mayo de 2026 y contra la línea base, mide el cambio en las entradas y
+simula un sobreconteo de 20 % y 40 % en las salidas. `monitoring_data.py` agrega los CSV nuevos a la
+versión silver con las mismas reglas de limpieza y el mismo catálogo de estaciones. El notebook
+`2.0-FC-monitoreo-drift-mibici` une los dos pasos.
+
+```bash
+make monitor                       # octubre de 2026; descarga el CSV de MiBici
+make monitor MES=2026-11 CSV_MES=data/raw/datos_abiertos_2026_11.csv
+```
+
+El resultado queda en `data/processed/monitoreo/`, que no se versiona. La evaluación publicada de
+octubre está en `reports/drift/v3/monthly/2026-10/` y en el experimento `mibici-monitoreo` de
+MLflow. Archivos, alertas, meses siguientes y publicación: `reports/drift/README.md`.
+
+| Alerta | Umbral piloto | Octubre de 2026 |
+|---|---|---|
+| Cambio en las entradas (salidas y llegadas) | 25 % | +79 %, activada |
+| Aumento del MAE sobre la referencia | 20 % | +56 %, activada |
+| Ventaja mínima sobre la línea base | 10 % | 21 %, no activada |
+
 ## Notebooks
 
 | Notebook | Contenido |
@@ -342,12 +365,13 @@ agrega a esta tabla; `latest` se mueve al más reciente.
 | `1.0-EDA-integral-mibici` | EDA completo de demanda por zona y hora, y preprocesamiento (requiere `make data`) |
 | `1.0-FV-feature-engineering` | Exploración inicial de ingeniería de variables |
 | `1.0-FC-feature-engineering` | Variables por zona y hora, trazabilidad en MLflow y validación de `features.py` |
+| `2.0-FC-monitoreo-drift-mibici` | Monitoreo de octubre de 2026 con el modelo v3: drift real y sintético (`make monitor`) |
 
 ## Organización del proyecto
 
 ```
 ├── Dockerfile                    <- Imagen del servicio (FastAPI + modelo exportado)
-├── Makefile  <- Instalación, descarga, limpieza, verificación, features, modelo, API y Docker
+├── Makefile  <- Instalación, descarga, limpieza, verificación, features, modelo, API, monitoreo y Docker
 ├── README.md
 ├── data
 │   ├── raw                       <- CSV originales (no se versionan en Git)
@@ -359,6 +383,7 @@ agrega a esta tabla; `latest` se mueve al más reciente.
 ├── notebooks                     <- Convención: número, iniciales y descripción
 ├── references                    <- urls_mibici.csv y plantilla del ML Canvas
 ├── reports
+│   ├── drift/v3/monthly          <- Monitoreo mensual del modelo v3 (guía en reports/drift/README.md)
 │   └── versionado/version_001    <- Evidencia del registro en MLflow
 ├── requirements.txt
 ├── tests                         <- Pruebas de limpieza, MLflow, variables, modelado, exportación y API
@@ -372,6 +397,8 @@ agrega a esta tabla; `latest` se mueve al más reciente.
     ├── eda.py                    <- Funciones del EDA (reutiliza las reglas de cleaning.py)
     ├── features.py               <- Pipelines de variables por zona/hora y registro explícito en MLflow
     ├── fastAPI.py                <- API: rutas, schema de entrada/salida y manejo de errores
+    ├── monitoring.py             <- Monitoreo mensual: métricas, drift, simulación y alertas
+    ├── monitoring_data.py        <- Agrega meses nuevos a la versión silver para el monitoreo
     └── modeling                  <- Entrenamiento, validación, predicción, promoción, exportación y servicio
 ```
 
