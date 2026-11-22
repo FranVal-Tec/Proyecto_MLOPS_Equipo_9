@@ -1,0 +1,62 @@
+artifact_path: mlflow-artifacts:/2/models/m-ab1af1f1400645eabc2a762e190ace2c/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.12.15
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - functools.partial
+    - sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor
+    - sklearn.utils.validation.check_array
+is_signature_from_type_hint: false
+mlflow_version: 3.18.0
+model_id: m-ab1af1f1400645eabc2a762e190ace2c
+model_size_bytes: 6153919
+model_uuid: m-ab1af1f1400645eabc2a762e190ace2c
+prompts: null
+run_id: bba9a2e9977c48d99a95c4dd17e0df70
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "string", "name": "zona_id", "required": true}, {"type": "double",
+    "name": "salidas", "required": true}, {"type": "double", "name": "llegadas", "required":
+    true}, {"type": "double", "name": "salidas_lag_1h", "required": true}, {"type":
+    "double", "name": "salidas_lag_23h", "required": true}, {"type": "double", "name":
+    "salidas_lag_24h", "required": true}, {"type": "double", "name": "salidas_lag_167h",
+    "required": true}, {"type": "double", "name": "salidas_lag_168h", "required":
+    true}, {"type": "double", "name": "salidas_media_previa_24h", "required": true},
+    {"type": "double", "name": "salidas_cobertura_previa_24h", "required": true},
+    {"type": "double", "name": "salidas_media_previa_168h", "required": true}, {"type":
+    "double", "name": "salidas_cobertura_previa_168h", "required": true}, {"type":
+    "double", "name": "llegadas_lag_1h", "required": true}, {"type": "double", "name":
+    "llegadas_lag_23h", "required": true}, {"type": "double", "name": "llegadas_lag_24h",
+    "required": true}, {"type": "double", "name": "llegadas_lag_167h", "required":
+    true}, {"type": "double", "name": "llegadas_lag_168h", "required": true}, {"type":
+    "double", "name": "llegadas_media_previa_24h", "required": true}, {"type": "double",
+    "name": "llegadas_cobertura_previa_24h", "required": true}, {"type": "double",
+    "name": "llegadas_media_previa_168h", "required": true}, {"type": "double", "name":
+    "llegadas_cobertura_previa_168h", "required": true}, {"type": "double", "name":
+    "hora_objetivo", "required": true}, {"type": "double", "name": "dia_semana_objetivo",
+    "required": true}, {"type": "double", "name": "mes_objetivo", "required": true},
+    {"type": "double", "name": "es_fin_semana", "required": true}, {"type": "double",
+    "name": "es_hora_pico", "required": true}, {"type": "double", "name": "hora_sin",
+    "required": true}, {"type": "double", "name": "hora_cos", "required": true}, {"type":
+    "double", "name": "dia_semana_sin", "required": true}, {"type": "double", "name":
+    "dia_semana_cos", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    2]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-11-21 09:47:21.011096'

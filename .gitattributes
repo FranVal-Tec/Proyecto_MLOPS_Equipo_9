@@ -1,2 +1,4 @@
 # Las versiones de datos se guardan byte por byte: sus SHA-256 dependen de los saltos de línea
 data/silver/** -text
+# El modelo exportado se verifica con su SHA-256: Git no debe cambiar sus saltos de línea
+models/** -text

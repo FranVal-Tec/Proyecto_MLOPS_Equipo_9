@@ -1,0 +1,86 @@
+{
+  "nombre": "mibici-demanda-zona-hora",
+  "version": "3",
+  "alias": "campeon",
+  "uri_registro": "models:/mibici-demanda-zona-hora/3",
+  "run_id": "bba9a2e9977c48d99a95c4dd17e0df70",
+  "etiquetas": {
+    "algoritmo": "hist_gradient_boosting",
+    "hiperparametros": "{\"modelo__estimator__learning_rate\": 0.1, \"modelo__estimator__loss\": \"poisson\", \"modelo__estimator__max_iter\": 200, \"modelo__estimator__max_leaf_nodes\": 63, \"modelo__estimator__min_samples_leaf\": 50}",
+    "mae_prueba": "2.0030028449681967",
+    "mae_flujo_neto_prueba": "2.197302805875596",
+    "mejora_contra_base_prueba": "0.2940330127665628",
+    "campeon_desde_utc": "2026-11-21T21:09:17+00:00",
+    "campeon_promovido_por": "ludwigvi",
+    "campeon_version_anterior": "ninguna"
+  },
+  "directorio": "mibici-demanda-zona-hora",
+  "sha256_modelo": "7954c37e068e08f3756d80d019b277335543459c31b05b7df42197688c1845d9",
+  "variables": [
+    "zona_id",
+    "salidas",
+    "llegadas",
+    "salidas_lag_1h",
+    "salidas_lag_23h",
+    "salidas_lag_24h",
+    "salidas_lag_167h",
+    "salidas_lag_168h",
+    "salidas_media_previa_24h",
+    "salidas_cobertura_previa_24h",
+    "salidas_media_previa_168h",
+    "salidas_cobertura_previa_168h",
+    "llegadas_lag_1h",
+    "llegadas_lag_23h",
+    "llegadas_lag_24h",
+    "llegadas_lag_167h",
+    "llegadas_lag_168h",
+    "llegadas_media_previa_24h",
+    "llegadas_cobertura_previa_24h",
+    "llegadas_media_previa_168h",
+    "llegadas_cobertura_previa_168h",
+    "hora_objetivo",
+    "dia_semana_objetivo",
+    "mes_objetivo",
+    "es_fin_semana",
+    "es_hora_pico",
+    "hora_sin",
+    "hora_cos",
+    "dia_semana_sin",
+    "dia_semana_cos"
+  ],
+  "objetivos": [
+    "salidas_siguiente_hora",
+    "llegadas_siguiente_hora"
+  ],
+  "salidas": [
+    "salidas_pronosticadas",
+    "llegadas_pronosticadas",
+    "flujo_neto_pronosticado"
+  ],
+  "datos": {
+    "archivo": "datos_recientes.parquet",
+    "referencia": "predicciones_referencia.parquet",
+    "dataset_sha256": "120583121d68bd712214bf273672b17707f8993794818af7e1ce1ed35364909a",
+    "desde": "2026-09-24 00:00:00",
+    "hasta": "2026-09-30 23:00:00",
+    "filas": 11840,
+    "zonas": 80,
+    "metricas": {
+      "mae_salidas": 2.4436559467262398,
+      "mae_llegadas": 2.4755480295263084,
+      "mae": 2.459601988126274,
+      "mae_flujo_neto": 2.4451921138698354,
+      "wape": 0.22978137742019927
+    }
+  },
+  "entorno": {
+    "python": "3.12.15",
+    "mlflow": "3.18.0",
+    "scikit-learn": "1.9.1",
+    "skops": "0.16.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1"
+  },
+  "versiones_distintas_a_requirements": null,
+  "exportado_utc": "2026-11-21T21:09:41+00:00"
+}

@@ -1,0 +1,8 @@
+# Solo entra a la imagen lo que necesita el servicio; el resto (data/ pesa más de 200 MB,
+# mlflow.db, notebooks, reportes) se queda fuera.
+*
+!requirements.txt
+!proyecto_mlops_equipo_9/
+!models/
+**/__pycache__
+**/*.pyc

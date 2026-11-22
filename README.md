@@ -227,23 +227,109 @@ Detalle del versionado y de MLflow: `docs/versionado_datos.md`, `docs/registro_m
 python -m pytest tests/
 ```
 
+## Modelo para el servicio
+
+La API y el contenedor no consultan el servidor de MLflow: usan una copia del modelo registrado en
+`models/`. La versión que se sirve se elige con alias del Model Registry:
+
+| Alias | Lo asigna | Uso |
+|---|---|---|
+| `candidato` | `train.py`, en cada entrenamiento | Versión propuesta tras la prueba; no se sirve |
+| `campeon` | `promote.py`, solo si el run tiene `cumple_criterio_despliegue = True` | Versión que se exporta y se sirve |
+
+Con `mlflow ui --port 5000` activo y el Parquet de variables generado (`make features`):
+
+```bash
+make promote_model   # @candidato -> @campeon, si cumplió el criterio de despliegue
+make export_model    # copia @campeon y los últimos 7 días de variables a models/
+make verify_model    # vuelve a predecir esos días con la copia local (no requiere servidor)
+```
+
+| Artefacto | Ruta | Versión |
+|---|---|---|
+| Modelo en el Model Registry | `models:/mibici-demanda-zona-hora/3` (alias `campeon`) | 3 |
+| Copia que sirve la API y va en la imagen | `models/mibici-demanda-zona-hora/` | 3 (ver `models/modelo_servicio.json`) |
+
+- `models/modelo_servicio.json`: versión, run de origen, huella SHA-256 de los archivos del modelo,
+  variables de entrada y versiones de Python y librerías con que se exportó.
+- `models/datos_recientes.parquet`: últimos días del dataset de variables; la API los usa cuando no
+  existe el Parquet completo de `data/processed/` (dentro del contenedor).
+- `models/predicciones_referencia.parquet`: lo que predice el modelo para esos días.
+
+La exportación se niega a correr si las versiones instaladas de mlflow, scikit-learn, skops, numpy o
+pandas no son las de `requirements.txt`, porque esas son las que instala Docker. La verificación
+compara el binario contra su huella y las predicciones contra la referencia, y termina con error si
+no coinciden. Al promover una versión nueva, se exporta con `--reemplazar` y se actualiza la tabla.
+Para revertir: `python -m proyecto_mlops_equipo_9.modeling.promote --version <n>`.
+
 ## FastAPI
 
-FastAPI se encuentra implementado con dos rutas finales.
-La raíz '/' y '/predict'
+```bash
+make api          # o: uvicorn proyecto_mlops_equipo_9.fastAPI:app --port 8000
+```
 
-Para ejecutar fastAPI como servicio se utiliza el comando `uv run fastapi dev`
-Hay que tener en cuenta que para correr predict es necesario ejecutar antes `mlflow ui`
+| Ruta | Descripción |
+|---|---|
+| `GET /` | Confirma que el servicio está funcionando |
+| `POST /predict` | Pronóstico de salidas, llegadas y flujo neto por zona para un periodo |
+| `GET /docs` | Swagger con el schema de entrada y salida y ejemplos (OpenAPI en `/openapi.json`) |
 
-**'/'** Solo nos da como resultado un mensaje de confirmación de que el sistema se encuentra funcionando.
-**'/predict'** Permite realizar una ejecución de una preducción sobre el modelo selecionado. Los parametros se pueden
-cambiar utilizando un request.
-**'/docs'** Aquí se pueden ver todas las específicaciones de las llamadas anteriores, incluyendo formatos de entrada
-y salida, en conjunto con ejemplos.
+**Entrada** (cuerpo JSON, opcional): `desde` y `hasta` en ISO 8601. Sin cuerpo, se pronostica la
+última hora disponible; con `desde` y sin `hasta`, solo esa hora; `hasta` no se incluye. Un periodo
+inválido o sin datos responde 422.
 
-El modelo utilizado actualmente es el generado a partir de ejecutar cualquiuera de las versiones de entranmiento mencionadas anteriormente. 
-Se utiliza el modelo que tengga el alias de candidato, por lo que se utilizará por defecto el más nuevo.
-Por ejemplo: **models:/mibici-demanda-zona-hora@candidato**
+```bash
+curl -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" \
+  -d '{"desde": "2026-09-30T18:00:00", "hasta": "2026-09-30T21:00:00"}'
+```
+
+**Salida:** `status`, `metadata` (`fecha_prediccion`, `zonas_totales`, `modelo_utilizado`) y
+`predicciones`, una por zona y hora con `salidas_pronosticadas`, `llegadas_pronosticadas`,
+`flujo_neto_pronosticado` y `tendencia` (`positive`, `negative` o `balanced`).
+
+El modelo y los datos los decide el servidor, no el cliente (`modeling/serving.py`). Si existe
+`models/modelo_servicio.json` se usa la exportación; si no, el Model Registry, como en desarrollo
+con `mlflow ui`. Variables de entorno opcionales:
+
+| Variable | Uso |
+|---|---|
+| `MODELO_DIR` | Carpeta de la exportación (por defecto `models/`) |
+| `DATASET_SERVICIO` | Parquet de variables a usar en lugar del predeterminado |
+| `MODELO_URI` | Modelo del Model Registry cuando no hay exportación (por defecto `@candidato`) |
+| `MLFLOW_TRACKING_URI` | Servidor de MLflow cuando no hay exportación (por defecto `http://127.0.0.1:5000`) |
+
+## Docker
+
+La imagen (`python:3.12-slim`) instala las versiones fijas de `requirements.txt` sin las herramientas
+de desarrollo, copia el paquete y `models/`, y levanta la API con uvicorn en el puerto 8000. Durante el
+build corre `modeling/export.py --verificar`: si el modelo no es el mismo binario o no reproduce sus
+predicciones de referencia en ese entorno, la imagen no se construye.
+
+```bash
+docker build -t ml-service:latest .
+docker run -p 8000:8000 ml-service:latest    # http://localhost:8000/docs
+```
+
+Imagen publicada: [ludwigvi/ml-service](https://hub.docker.com/r/ludwigvi/ml-service).
+
+Publicación en DockerHub con tags versionados (`make docker_build VERSION=1.0.0` y
+`make docker_push DOCKERHUB_USUARIO=<usuario> VERSION=1.0.0` hacen lo mismo):
+
+```bash
+docker build --build-arg VERSION=1.0.0 -t ml-service:latest -t ml-service:1.0.0 .
+docker tag ml-service:1.0.0 <usuario>/ml-service:1.0.0
+docker tag ml-service:1.0.0 <usuario>/ml-service:latest
+docker push <usuario>/ml-service:1.0.0
+docker push <usuario>/ml-service:latest
+```
+
+| Tag | Contenido |
+|---|---|
+| `1.0.0` | API 1.0.0 con el modelo `mibici-demanda-zona-hora` versión 3 |
+| `latest` | Último tag publicado |
+
+Cada cambio en la API o en el modelo servido se publica con un tag nuevo (`1.0.1`, `1.1.0`, …) y se
+agrega a esta tabla; `latest` se mueve al más reciente.
 
 ## Notebooks
 
@@ -260,7 +346,8 @@ Por ejemplo: **models:/mibici-demanda-zona-hora@candidato**
 ## Organización del proyecto
 
 ```
-├── Makefile  <- Instalación, descarga, limpieza, verificación, features y pruebas
+├── Dockerfile                    <- Imagen del servicio (FastAPI + modelo exportado)
+├── Makefile  <- Instalación, descarga, limpieza, verificación, features, modelo, API y Docker
 ├── README.md
 ├── data
 │   ├── raw                       <- CSV originales (no se versionan en Git)
@@ -268,13 +355,13 @@ Por ejemplo: **models:/mibici-demanda-zona-hora@candidato**
 ├── docs                          <- Guías de versionado de datos, MLflow y EDA
 ├── mlartifacts                   <- Artefactos del run de MLflow
 ├── mlflow_limpieza_integrada.db  <- Base de MLflow con el registro de version_001
-├── models                        <- Modelos entrenados (fase siguiente)
+├── models                        <- Modelo exportado para el servicio, datos recientes y referencia
 ├── notebooks                     <- Convención: número, iniciales y descripción
 ├── references                    <- urls_mibici.csv y plantilla del ML Canvas
 ├── reports
 │   └── versionado/version_001    <- Evidencia del registro en MLflow
 ├── requirements.txt
-├── tests                         <- Pruebas de limpieza, MLflow y variables
+├── tests                         <- Pruebas de limpieza, MLflow, variables, modelado, exportación y API
 └── proyecto_mlops_equipo_9
     ├── config.py                 <- Rutas del proyecto
     ├── download.py               <- Descarga de datos crudos
@@ -284,8 +371,8 @@ Por ejemplo: **models:/mibici-demanda-zona-hora@candidato**
     ├── open_mlflow.py            <- Abre la base de MLflow en otra computadora
     ├── eda.py                    <- Funciones del EDA (reutiliza las reglas de cleaning.py)
     ├── features.py               <- Pipelines de variables por zona/hora y registro explícito en MLflow
-    ├── fastAPI.py                <- Se encarga de controlar todo lo relacioinado con las llamadas a la API
-    └── modeling                  <- Entrenamiento y predicción (fase siguiente)
+    ├── fastAPI.py                <- API: rutas, schema de entrada/salida y manejo de errores
+    └── modeling                  <- Entrenamiento, validación, predicción, promoción, exportación y servicio
 ```
 
 ## Flujo de trabajo del equipo
