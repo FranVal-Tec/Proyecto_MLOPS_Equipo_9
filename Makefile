@@ -120,6 +120,25 @@ api:
 
 
 #################################################################################
+# MONITOREO                                                                     #
+#################################################################################
+
+MES ?= 2026-10
+CSV_MES ?=
+
+
+## Evaluar el modelo servido en un mes nuevo: make monitor MES=2026-10 (ver reports/drift/README.md)
+
+.PHONY: monitor
+monitor:
+	MIBICI_PROYECTO="$(CURDIR)" MIBICI_MES=$(MES) $(if $(CSV_MES),MIBICI_CSV_MES="$(abspath $(CSV_MES))") \
+	$(PYTHON_INTERPRETER) -m jupyter nbconvert --to notebook --execute \
+		--ExecutePreprocessor.timeout=-1 --ExecutePreprocessor.kernel_name=python3 \
+		--output-dir data/processed/monitoreo --output monitoreo_$(MES).ipynb \
+		notebooks/2.0-FC-monitoreo-drift-mibici.ipynb
+
+
+#################################################################################
 # DOCKER                                                                        #
 #################################################################################
 
