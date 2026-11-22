@@ -310,6 +310,8 @@ docker build -t ml-service:latest .
 docker run -p 8000:8000 ml-service:latest    # http://localhost:8000/docs
 ```
 
+Imagen publicada: [ludwigvi/ml-service](https://hub.docker.com/r/ludwigvi/ml-service).
+
 Publicación en DockerHub con tags versionados (`make docker_build VERSION=1.0.0` y
 `make docker_push DOCKERHUB_USUARIO=<usuario> VERSION=1.0.0` hacen lo mismo):
 
