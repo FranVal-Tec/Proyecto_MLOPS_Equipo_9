@@ -72,6 +72,10 @@ def descarga_falsa(modelo_exportacion, monkeypatch):
             str(ruta),
             skops_trusted_types=tipos_confiables(modelo_exportacion),
         )
+        # Como la descarga real: una carpeta privada, legible solo por quien la creó.
+        for archivo in ruta.rglob("*"):
+            archivo.chmod(0o600)
+        ruta.chmod(0o700)
         return ruta, {
             "nombre": nombre,
             "version": VERSION_FALSA,

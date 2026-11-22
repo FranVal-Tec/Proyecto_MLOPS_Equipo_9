@@ -134,6 +134,12 @@ def comparar_con_referencia(modelo, datos, referencia, tolerancia=TOLERANCIA):
     }
 
 
+def permitir_lectura(ruta):
+    """Abre a lectura (y a recorrer, en carpetas) para todos, sin quitar permisos."""
+    for p in [Path(ruta), *Path(ruta).rglob("*")]:
+        p.chmod(p.stat().st_mode | (0o555 if p.is_dir() else 0o444))
+
+
 def escribir_json(ruta, datos):
     Path(ruta).write_text(json.dumps(datos, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -225,6 +231,9 @@ def exportar(
             shutil.rmtree(destino)
         destino.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(ruta, destino)
+        # La descarga vive en una carpeta temporal privada (permisos 700) y copytree copia esos
+        # permisos; sin esto, otro usuario (el del contenedor) no podría cargar el modelo.
+        permitir_lectura(destino)
 
     datos.to_parquet(modelos_dir / ARCHIVO_DATOS, index=False)
     referencia.to_parquet(modelos_dir / ARCHIVO_REFERENCIA, index=False)

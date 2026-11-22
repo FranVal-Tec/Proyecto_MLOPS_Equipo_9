@@ -89,6 +89,11 @@ def test_exportar_y_verificar_sin_servidor(exportacion, requirements_actuales):
     resultado = ex.verificar(modelos)
     assert resultado["coincide"] and resultado["mismo_binario"]
 
+    # Otro usuario (el del contenedor) debe poder recorrer la carpeta y leer el modelo.
+    carpeta = modelos / metadatos["directorio"]
+    assert carpeta.stat().st_mode & 0o005 == 0o005
+    assert all(p.stat().st_mode & 0o004 for p in carpeta.rglob("*") if p.is_file())
+
     with pytest.raises(FileExistsError):
         ex.exportar(exportacion.dataset, modelos, "x", requirements=requirements_actuales)
 

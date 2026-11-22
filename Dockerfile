@@ -27,12 +27,14 @@ RUN grep -vE '^(-e |ipython==|jupyterlab==|mkdocs==|notebook==|pytest==|ruff==|u
 COPY proyecto_mlops_equipo_9 ./proyecto_mlops_equipo_9
 COPY models ./models
 
-# Reproducibilidad: el build falla si el modelo no es el mismo binario que se exportó o si en
-# este entorno no reproduce sus predicciones de referencia.
-RUN python -m proyecto_mlops_equipo_9.modeling.export --verificar
-
-RUN useradd --create-home --uid 1000 servicio
+# El servicio no corre como root. El código y el modelo quedan legibles para todos, sin depender
+# de los permisos que tenían los archivos en la máquina que construye la imagen.
+RUN chmod -R a+rX /app && useradd --create-home --uid 1000 servicio
 USER servicio
+
+# Reproducibilidad: con el mismo usuario que corre la API, el build falla si el modelo no es el
+# mismo binario que se exportó o si en este entorno no reproduce sus predicciones de referencia.
+RUN python -m proyecto_mlops_equipo_9.modeling.export --verificar
 
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
