@@ -1,7 +1,7 @@
 # Servicio de pronóstico MiBici (Equipo 9): API de FastAPI con el modelo exportado en models/.
 #   docker build -t ml-service:latest .
 #   docker run -p 8000:8000 ml-service:latest      ->  http://localhost:8000/docs
-FROM python:3.12-slim
+FROM python:3.12.15-slim
 
 ARG VERSION=dev
 LABEL org.opencontainers.image.title="ml-service" \
