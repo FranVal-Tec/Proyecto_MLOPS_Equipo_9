@@ -1,0 +1,153 @@
+{
+  "mes": "2026-10",
+  "modelo": {
+    "id": "models:/mibici-demanda-zona-hora/3",
+    "origen": "exportacion_verificada_de_la_api",
+    "version": "3",
+    "run_modelo": "bba9a2e9977c48d99a95c4dd17e0df70",
+    "sha256_exportacion": "7954c37e068e08f3756d80d019b277335543459c31b05b7df42197688c1845d9",
+    "verificacion_api": {
+      "filas": 11840,
+      "desviacion_maxima": 1.4210854715202004e-14
+    },
+    "entorno_exportacion": {
+      "python": "3.12.15",
+      "mlflow": "3.18.0",
+      "scikit-learn": "1.9.1",
+      "skops": "0.16.0",
+      "numpy": "2.5.4",
+      "pandas": "3.1.1"
+    },
+    "entorno_evaluacion": {
+      "python": "3.12.14",
+      "mlflow": "3.18.0",
+      "scikit-learn": "1.9.1",
+      "skops": "0.16.0",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "pyarrow": "25.0.1"
+    }
+  },
+  "features_archivo": "features_hasta_2026-10.parquet",
+  "features_sha256": "56fde59255debbea7fff2682ce863aeda726b3fb10dcf4b71fe2b95b039a6fa3",
+  "umbral_piloto": true,
+  "referencia": [
+    "2026-04",
+    "2026-05"
+  ],
+  "mes_real": {
+    "filas": 52400,
+    "zonas": 80,
+    "zonas_comunes": 66,
+    "zonas_fuera_de_referencia": [
+      "G1000_-10747_2297",
+      "G1000_-10748_2296",
+      "G1000_-10748_2297",
+      "G1000_-10748_2298",
+      "G1000_-10749_2297",
+      "G1000_-10749_2298",
+      "G1000_-10750_2299",
+      "G1000_-10754_2303",
+      "G1000_-10754_2304",
+      "G1000_-10757_2299",
+      "G1000_-10758_2299",
+      "G1000_-10760_2298",
+      "G1000_-10761_2295",
+      "G1000_-10761_2296"
+    ],
+    "horas_objetivo_evaluables": 655,
+    "horas_calendario": 744,
+    "primera_hora_objetivo": "2026-10-01T00:00:00",
+    "ultima_hora_objetivo": "2026-10-31T23:00:00"
+  },
+  "fuente": {
+    "identidad": {
+      "manifest_silver_sha256": "f214d057ec785ad8a5dbbcc86112ffa3f16af47d0b97e7f748ea26d4480980ab",
+      "catalogo": "nomenclatura_2026_09.csv",
+      "catalogo_sha256": "206e45fe633922b634d858142fa21e6fd9f4c421b6435c02980ef290cc2df90d",
+      "politica_sha256": "ae3d5b62d5111a0eb471a7a32de6e5b71dab267aedd7cb8ec5d1dca8a5554d44",
+      "codigo_sha256": {
+        "cleaning.py": "8d15900a0a2516693931c6e014a1efe40f53599922f1d4f0d5f05af8a529a31a",
+        "dataset.py": "a0c05a3a0f8b90880811e35ec8e53d712ae19637bdb793a32e4295b6b5ec46a3",
+        "features.py": "28af95d4d03c706f6b31748547805dcae105f192bc4ae18c60da24b40321f84d",
+        "monitoring_data.py": "a8a6923344a58f9430768f4b352e0b369e79bae4619a987aea59607c64045e85"
+      },
+      "csv_sha256": {
+        "2026-10": "0cdfb05299e6db658ac9cc7723494a9704b0749e3671c29c8566826ea889b900"
+      }
+    },
+    "id_extension_silver": "4aaed18ff3d537abe49637b5b83c6be173666eb09bb7d1dc931bd73a458d9bc8",
+    "fuentes_mensuales": [
+      {
+        "periodo": "2026-10",
+        "archivo": "datos_abiertos_2026_10.csv",
+        "url": "https://mibici.net/site/assets/files/133188/datos_abiertos_2026_10.csv",
+        "sha256": "0cdfb05299e6db658ac9cc7723494a9704b0749e3671c29c8566826ea889b900",
+        "coincide_con_snapshot_octubre": true,
+        "bytes": 55222199,
+        "filas_crudas": 635532,
+        "filas_aceptadas": 608074,
+        "filas_excluidas": 27458,
+        "exclusion_por_motivo": {
+          "duracion_no_positiva": 191,
+          "misma_estacion_corta": 25877,
+          "velocidad_imposible": 1340,
+          "duracion_larga": 50
+        },
+        "estaciones_origen_crudas": 470,
+        "estaciones_origen_aceptadas": 469,
+        "ids_estacion_fuera_catalogo": [
+          124
+        ],
+        "dias_sin_registros_en_archivo": []
+      }
+    ],
+    "features": "features_hasta_2026-10.parquet",
+    "features_sha256": "56fde59255debbea7fff2682ce863aeda726b3fb10dcf4b71fe2b95b039a6fa3",
+    "filas_features": 944254,
+    "ventana_desde": "2025-01-01 00:00:00",
+    "ventana_hasta_exclusivo": "2026-11-01 00:00:00",
+    "politica_catalogo": "Catálogo de silver 001, con exclusiones cuantificadas por mes.",
+    "politica_id_repetidos": "Archivos nuevos cotejados entre sí y contra silver 001; histórico fijo.",
+    "disponibilidad_verificada_el": "2026-11-20"
+  },
+  "simulaciones": {
+    "sintetico_20": {
+      "sobreconteo_pct": 20,
+      "columnas": [
+        "salidas",
+        "salidas_lag_1h",
+        "salidas_lag_23h",
+        "salidas_lag_24h",
+        "salidas_lag_167h",
+        "salidas_lag_168h",
+        "salidas_media_previa_24h",
+        "salidas_media_previa_168h"
+      ],
+      "etiquetas_originales": true
+    },
+    "sintetico_40": {
+      "sobreconteo_pct": 40,
+      "columnas": [
+        "salidas",
+        "salidas_lag_1h",
+        "salidas_lag_23h",
+        "salidas_lag_24h",
+        "salidas_lag_167h",
+        "salidas_lag_168h",
+        "salidas_media_previa_24h",
+        "salidas_media_previa_168h"
+      ],
+      "etiquetas_originales": true
+    }
+  },
+  "umbrales": {
+    "entrada": 0.25,
+    "mae": 0.2,
+    "mejora_minima_naive": 0.1
+  },
+  "mlflow": {
+    "experimento": "mibici-monitoreo",
+    "run_id": "c9e8b3b2dac44000924dec3baff14490"
+  }
+}

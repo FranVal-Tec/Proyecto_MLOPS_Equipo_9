@@ -1,0 +1,19 @@
+escenario,regla,valor,umbral,activada,accion_propuesta,evaluable
+mes_real,entrada_salidas,0.7868870795534653,0.25,True,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+mes_real,entrada_llegadas,0.7882438581749025,0.25,True,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+mes_real,entrada_salidas_lag_23h,0.7811182902732621,0.25,True,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+mes_real,entrada_llegadas_lag_23h,0.7819332484072639,0.25,True,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+mes_real,aumento_mae,0.5639106517465355,0.2,True,"Revisar error por zona y hora. Si persiste con datos válidos, evaluar reentrenamiento.",True
+mes_real,ventaja_naive,0.20743791319628035,0.1,False,Comparar el modelo con el naïve y evaluar un candidato con datos recientes.,True
+sintetico_20,entrada_salidas,0.20000000000000417,0.25,False,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_20,entrada_llegadas,1.7541523789077473e-14,0.25,False,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_20,entrada_salidas_lag_23h,0.19999999999999996,0.25,False,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_20,entrada_llegadas_lag_23h,0.0,0.25,False,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_20,aumento_mae,0.0860196496825738,0.2,False,"Revisar error por zona y hora. Si persiste con datos válidos, evaluar reentrenamiento.",True
+sintetico_20,ventaja_naive,0.31019485796981594,0.1,False,Comparar el modelo con el naïve y evaluar un candidato con datos recientes.,True
+sintetico_40,entrada_salidas,0.4000000000000048,0.25,True,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_40,entrada_llegadas,1.7541523789077473e-14,0.25,False,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_40,entrada_salidas_lag_23h,0.40000000000000013,0.25,True,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_40,entrada_llegadas_lag_23h,0.0,0.25,False,"Revisar fuente, cobertura y conteos antes de ajustar el modelo.",True
+sintetico_40,aumento_mae,0.2354956093337679,0.2,True,"Revisar error por zona y hora. Si persiste con datos válidos, evaluar reentrenamiento.",True
+sintetico_40,ventaja_naive,0.3253538607154678,0.1,False,Comparar el modelo con el naïve y evaluar un candidato con datos recientes.,True
