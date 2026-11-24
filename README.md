@@ -12,6 +12,21 @@ pruebas, versionado de datos y registro en MLflow.
 Periodo de datos: enero 2025 a septiembre 2026 (21 meses). La llegada de bicicletas eléctricas en
 junio 2026 se usa como caso real de cambio en los datos (*data drift*).
 
+## Contenido
+
+- [Primer setup](#primer-setup)
+- [Pipeline de datos](#pipeline-de-datos)
+  - [Ejecución mediante Makefile](#ejecución-mediante-makefile)
+  - [Reproducibilidad del entrenamiento](#reproducibilidad-del-entrenamiento)
+- [Pruebas](#pruebas)
+- [Modelo para el servicio](#modelo-para-el-servicio)
+- [FastAPI](#fastapi)
+- [Docker](#docker)
+- [Monitoreo](#monitoreo)
+- [Notebooks](#notebooks)
+- [Organización del proyecto](#organización-del-proyecto)
+- [Flujo de trabajo del equipo](#flujo-de-trabajo-del-equipo)
+
 ## Primer setup
 
 Requiere Python 3.12. Desde la carpeta raíz del repositorio:
